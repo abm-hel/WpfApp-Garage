@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp-Garage", "WpfApp-Gar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "..\Classes\Classes.csproj", "{A6AA281A-BD37-4CB3-A9B7-A8D5860D6B25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acces", "..\Acces\Acces.csproj", "{10CDD9D6-DB72-41AC-A0B4-CB8FF6516733}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A6AA281A-BD37-4CB3-A9B7-A8D5860D6B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6AA281A-BD37-4CB3-A9B7-A8D5860D6B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6AA281A-BD37-4CB3-A9B7-A8D5860D6B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10CDD9D6-DB72-41AC-A0B4-CB8FF6516733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CDD9D6-DB72-41AC-A0B4-CB8FF6516733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10CDD9D6-DB72-41AC-A0B4-CB8FF6516733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CDD9D6-DB72-41AC-A0B4-CB8FF6516733}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
