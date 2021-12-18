@@ -35,6 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Acces">
+      <HintPath>..\Gestion\bin\Debug\Acces.dll</HintPath>
+    </Reference>
+    <Reference Include="Classes">
+      <HintPath>..\Gestion\bin\Debug\Classes.dll</HintPath>
+    </Reference>
+    <Reference Include="Gestion">
+      <HintPath>..\Gestion\bin\Debug\Gestion.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
