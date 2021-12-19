@@ -32,7 +32,7 @@ namespace WpfApp_Garage
 
         private void boutonQuitter_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }
