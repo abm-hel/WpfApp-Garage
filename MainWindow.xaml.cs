@@ -27,7 +27,8 @@ namespace WpfApp_Garage
 
         private void boutonClients_Click(object sender, RoutedEventArgs e)
         {
-
+            View.Clients fenetre = new View.Clients();
+            fenetre.ShowDialog();
         }
 
         private void boutonQuitter_Click(object sender, RoutedEventArgs e)

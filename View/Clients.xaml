@@ -71,9 +71,10 @@
            Command="{Binding cAnnuler}" />
         </StackPanel>
         
-        <DataGrid Name="dataGridClients" ItemsSource="{Binding Path=BcpPersonnes}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+        <DataGrid Name="dataGridClients" ItemsSource="{Binding Path=BcpClients}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
             SelectedItem="{Binding PersonneSelectionnee, Mode=TwoWay}" SelectionChanged="dgPersonnes_SelectionChanged" >
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Path=prenom}" Width="*" />
@@ -83,6 +84,7 @@
                 <DataGridTextColumn Header="Télephone" Binding="{Binding Path=numeroTelephone}" Width="*" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Path=adresseEmail}" Width="*" />
             </DataGrid.Columns>
+            
         </DataGrid>
         
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
