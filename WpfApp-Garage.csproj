@@ -35,15 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Acces">
-      <HintPath>..\Gestion\bin\Debug\Acces.dll</HintPath>
-    </Reference>
-    <Reference Include="Classes">
-      <HintPath>..\Gestion\bin\Debug\Classes.dll</HintPath>
-    </Reference>
-    <Reference Include="Gestion">
-      <HintPath>..\Gestion\bin\Debug\Gestion.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -64,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Clients.xaml.cs">
+      <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,8 +70,47 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\A_Base.cs" />
+    <Compile Include="Model\A_Client.cs" />
+    <Compile Include="Model\A_Entretien.cs" />
+    <Compile Include="Model\A_Entretien_Intervention.cs" />
+    <Compile Include="Model\A_Entretien_Piece.cs" />
+    <Compile Include="Model\A_Intervention.cs" />
+    <Compile Include="Model\A_Modele.cs" />
+    <Compile Include="Model\A_Piece.cs" />
+    <Compile Include="Model\A_TypeEntretien.cs" />
+    <Compile Include="Model\A_TypeEntretien_Intervention.cs" />
+    <Compile Include="Model\A_TypeEntretien_Piece.cs" />
+    <Compile Include="Model\A_Vehicule.cs" />
+    <Compile Include="Model\C_Client.cs" />
+    <Compile Include="Model\C_Entretien.cs" />
+    <Compile Include="Model\C_Entretien_Intervention.cs" />
+    <Compile Include="Model\C_Entretien_Piece.cs" />
+    <Compile Include="Model\C_Intervention.cs" />
+    <Compile Include="Model\C_Modele.cs" />
+    <Compile Include="Model\C_Piece.cs" />
+    <Compile Include="Model\C_TypeEntretien.cs" />
+    <Compile Include="Model\C_TypeEntretien_Intervention.cs" />
+    <Compile Include="Model\C_TypeEntretien_Piece.cs" />
+    <Compile Include="Model\C_Vehicule.cs" />
+    <Compile Include="Model\G_Base.cs" />
+    <Compile Include="Model\G_Client.cs" />
+    <Compile Include="Model\G_Entretien.cs" />
+    <Compile Include="Model\G_Entretien_Intervention.cs" />
+    <Compile Include="Model\G_Entretien_Piece.cs" />
+    <Compile Include="Model\G_Intervention.cs" />
+    <Compile Include="Model\G_Modele.cs" />
+    <Compile Include="Model\G_Piece.cs" />
+    <Compile Include="Model\G_TypeEntretien.cs" />
+    <Compile Include="Model\G_TypeEntretien_Intervention.cs" />
+    <Compile Include="Model\G_TypeEntretien_Piece.cs" />
+    <Compile Include="Model\G_Vehicule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
