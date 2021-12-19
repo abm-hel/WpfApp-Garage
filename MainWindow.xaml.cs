@@ -24,5 +24,15 @@ namespace WpfApp_Garage
         {
             InitializeComponent();
         }
+
+        private void boutonClients_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void boutonQuitter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
