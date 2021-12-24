@@ -6,7 +6,7 @@ using Projet_Garage.Model;
 using Projet_Garage.Acces;
 #endregion
 
-namespace Projet_Garage.Gestion
+namespace Projet_Garage.Model
 {
  /// <summary>
  /// Couche intermédiaire de gestion (Business Layer)

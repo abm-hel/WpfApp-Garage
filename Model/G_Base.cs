@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 #endregion
 
-namespace Projet_Garage.Gestion
+namespace Projet_Garage.Model
 {
  public class G_Base
   {

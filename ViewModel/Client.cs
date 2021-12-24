@@ -40,11 +40,11 @@ namespace WpfApp_Garage.ViewModel
         #endregion
 
         #region Données extérieures
-        private Client _unClient;
-        public Client unClient
+        private VM_Client _unClient;
+        public VM_Client unClient
         {
             get { return _unClient; }
-            set { AssignerChamp<Client>(ref _unClient, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            set { AssignerChamp<VM_Client>(ref _unClient, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         private ObservableCollection<C_Client> _bcpClients = new ObservableCollection<C_Client>();
         public ObservableCollection<C_Client> bcpClients
@@ -62,5 +62,86 @@ namespace WpfApp_Garage.ViewModel
         public BaseCommande commandeSupprimer { get; set; }
         public BaseCommande commandeEssaiSelMult { get; set; }
         #endregion
+
+        public Client()
+        {
+            unClient = new VM_Client();
+            unClient.id = 24;
+            unClient.nom = "BEN MOUSSA";
+            unClient.prenom = "Adil";
+            unClient.dateNaissance = DateTime.Today;
+            ActiverUneFiche = false;
+        }
+
+        private ObservableCollection<C_Client> ChargerClients(string chaineConnexion)
+        {
+            ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
+            List<C_Client> lTmp = new G_Client (chaineConnexion).Lire();
+            foreach (C_Client Tmp in lTmp)
+                rep.Add(Tmp);
+            return rep;
+        }
+
+        public void Confirmer()
+        {
+            if (nAjout == -1)
+            {
+                unClient.id = new G_Client(chaineConnexion).Ajouter(unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
+                bcpClients.Add(new C_Client(unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail));
+            }
+            else
+            {
+                new G_Client(chaineConnexion).Modifier(unClient.id, unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
+                bcpClients[nAjout] = new C_Client(unClient.id, unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
+            }
+            ActiverUneFiche = false;
+        }
+
+
+        public class VM_Client : BasePropriete
+        {
+            private int _id;
+            private string _nom, _prenom, _adresse, _numeroTelephone, _adresseEmail;
+            private DateTime _dateNaissance;
+            public int id
+            {
+                get { return _id; }
+                set { AssignerChamp<int>(ref _id, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+            public string prenom
+            {
+                get { return _prenom; }
+                set { AssignerChamp<string>(ref _prenom, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+            public string nom
+            {
+                get { return _nom; }
+                set { AssignerChamp<string>(ref _nom, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+            public DateTime dateNaissance
+            {
+                get { return _dateNaissance; }
+                set { AssignerChamp<DateTime>(ref _dateNaissance, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public string adresse
+            {
+                get { return _adresse; }
+                set { AssignerChamp<string>(ref _adresse, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public string numeroTelephone
+            {
+                get { return _numeroTelephone; }
+                set { AssignerChamp<string>(ref _numeroTelephone, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public string adresseEmail
+            {
+                get { return _adresseEmail; }
+                set { AssignerChamp<string>(ref _adresseEmail, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+        }
     }
 }
