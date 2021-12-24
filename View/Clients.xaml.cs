@@ -19,9 +19,16 @@ namespace WpfApp_Garage.View
     /// </summary>
     public partial class Clients : Window
     {
+  
         public Clients()
         {
             InitializeComponent();
+
+        }
+
+        private void dataGridPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+         
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 #endregion
 
-namespace Projet_Garage.Classes
+namespace Projet_Garage.Model
 {
  /// <summary>
  /// Classe de définition des données

@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using Projet_Garage.Classes;
+using Projet_Garage.Model;
 #endregion
 
 namespace Projet_Garage.Acces

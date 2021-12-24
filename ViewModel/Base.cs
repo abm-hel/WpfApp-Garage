@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace WpfApp_Garage.ViewModel
 {
-    class Base : INotifyPropertyChanged
+    class BasePropriete : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(String propertyName)
