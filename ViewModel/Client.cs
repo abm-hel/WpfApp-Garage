@@ -109,6 +109,32 @@ namespace WpfApp_Garage.ViewModel
             ActiverUneFiche = true;
         }
 
+        public void Modifier()
+        {
+            if (clientSelectionnee != null)
+            {
+                C_Client Tmp = new G_Client(chaineConnexion).Lire_ID(unClient.id);
+                unClient = new VM_Client();
+                unClient.id = Tmp.id;
+                unClient.prenom = Tmp.prenom;
+                unClient.nom = Tmp.nom;
+                unClient.dateNaissance = (DateTime)Tmp.dateNaissance;
+                unClient.adresse = Tmp.adresse;
+                unClient.numeroTelephone = Tmp.numeroTelephone;
+                unClient.adresseEmail = Tmp.adresseEmail;
+                nAjout = bcpClients.IndexOf(clientSelectionnee);
+                ActiverUneFiche = true;
+            }
+        }
+        public void Supprimer()
+        {
+            if (clientSelectionnee != null)
+            {
+                new G_Client(chaineConnexion).Supprimer(clientSelectionnee.id);
+                bcpClients.Remove(clientSelectionnee);
+            }
+        }
+
 
         public class VM_Client : BasePropriete
         {
