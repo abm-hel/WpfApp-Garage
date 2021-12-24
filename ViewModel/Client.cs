@@ -97,6 +97,18 @@ namespace WpfApp_Garage.ViewModel
             ActiverUneFiche = false;
         }
 
+        public void Annuler()
+        { 
+            ActiverUneFiche = false;
+        }
+
+        public void Ajouter()
+        {
+            unClient = new VM_Client();
+            nAjout = -1;
+            ActiverUneFiche = true;
+        }
+
 
         public class VM_Client : BasePropriete
         {
