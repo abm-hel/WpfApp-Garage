@@ -53,5 +53,14 @@ namespace WpfApp_Garage.ViewModel
             set { _bcpClients = value; }
         }
         #endregion
+
+        #region Commandes
+        public BaseCommande commandeConfirmer { get; set; }
+        public BaseCommande commandeAnnuler { get; set; }
+        public BaseCommande commandeAjouter { get; set; }
+        public BaseCommande commandeModifier { get; set; }
+        public BaseCommande commandeSupprimer { get; set; }
+        public BaseCommande commandeEssaiSelMult { get; set; }
+        #endregion
     }
 }
