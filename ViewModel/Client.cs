@@ -32,7 +32,7 @@ namespace WpfApp_Garage.ViewModel
         }
 
         private C_Client _clientSelectionnee;
-        public C_Client clientSelectionnee
+        public C_Client clientSelectionne
         {
             get { return _clientSelectionnee; }
             set { AssignerChamp<C_Client>(ref _clientSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
@@ -111,7 +111,7 @@ namespace WpfApp_Garage.ViewModel
 
         public void Modifier()
         {
-            if (clientSelectionnee != null)
+            if (clientSelectionne != null)
             {
                 C_Client Tmp = new G_Client(chaineConnexion).Lire_ID(unClient.id);
                 unClient = new VM_Client();
@@ -122,16 +122,16 @@ namespace WpfApp_Garage.ViewModel
                 unClient.adresse = Tmp.adresse;
                 unClient.numeroTelephone = Tmp.numeroTelephone;
                 unClient.adresseEmail = Tmp.adresseEmail;
-                nAjout = bcpClients.IndexOf(clientSelectionnee);
+                nAjout = bcpClients.IndexOf(clientSelectionne);
                 ActiverUneFiche = true;
             }
         }
         public void Supprimer()
         {
-            if (clientSelectionnee != null)
+            if (clientSelectionne != null)
             {
-                new G_Client(chaineConnexion).Supprimer(clientSelectionnee.id);
-                bcpClients.Remove(clientSelectionnee);
+                new G_Client(chaineConnexion).Supprimer(clientSelectionne.id);
+                bcpClients.Remove(clientSelectionne);
             }
         }
 
@@ -141,6 +141,17 @@ namespace WpfApp_Garage.ViewModel
             foreach (C_Client p in lTmp)
             { string s = p.nom; }
             int nTmp = lTmp.Count;
+        }
+
+        public void ClientSelectionne2UnClient()
+        {
+            unClient.id = clientSelectionne.id;
+            unClient.nom = clientSelectionne.nom;
+            unClient.prenom = clientSelectionne.prenom;
+            unClient.dateNaissance = (DateTime)clientSelectionne.dateNaissance;
+            unClient.adresse = clientSelectionne.adresse;
+            unClient.numeroTelephone = clientSelectionne.numeroTelephone;
+            unClient.adresseEmail = clientSelectionne.adresseEmail
         }
 
 
