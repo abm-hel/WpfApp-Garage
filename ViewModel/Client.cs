@@ -38,5 +38,20 @@ namespace WpfApp_Garage.ViewModel
             set { AssignerChamp<C_Client>(ref _clientSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         #endregion
+
+        #region Données extérieures
+        private Client _unClient;
+        public Client unClient
+        {
+            get { return _unClient; }
+            set { AssignerChamp<Client>(ref _unClient, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        private ObservableCollection<C_Client> _bcpClients = new ObservableCollection<C_Client>();
+        public ObservableCollection<C_Client> bcpClients
+        {
+            get { return _bcpClients; }
+            set { _bcpClients = value; }
+        }
+        #endregion
     }
 }
