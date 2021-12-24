@@ -135,6 +135,14 @@ namespace WpfApp_Garage.ViewModel
             }
         }
 
+        public void EssaiSelMult(object lListe)
+        {
+            System.Collections.IList lTmp = (System.Collections.IList)lListe;
+            foreach (C_Client p in lTmp)
+            { string s = p.nom; }
+            int nTmp = lTmp.Count;
+        }
+
 
         public class VM_Client : BasePropriete
         {
