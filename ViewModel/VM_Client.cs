@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Projet_Garage.Classes;
 using Projet_Garage.Gestion;
+using System.Configuration;
 
 namespace WpfApp_Garage.ViewModel
 {
-    class Client : BasePropriete
+    class VM_Client : BasePropriete
     {
         #region Données Écran
-        private string chaineConnexion;
+
+        
+        //@"Data Source=MSI\SQLEXPRESS;AttachDbFilename=D:\BD_ClubDeFootball\BD_ClubDeSport.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+        private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.a"].ConnectionString;
+
         private int nAjout;
         private bool _ActiverUneFiche;
         public bool ActiverUneFiche
@@ -33,7 +38,7 @@ namespace WpfApp_Garage.ViewModel
         }
 
         private C_Client _clientSelectionnee;
-        public C_Client clientSelectionne
+        public C_Client clientSelectionnee
         {
             get { return _clientSelectionnee; }
             set { AssignerChamp<C_Client>(ref _clientSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
@@ -41,11 +46,11 @@ namespace WpfApp_Garage.ViewModel
         #endregion
 
         #region Données extérieures
-        private VM_Client _unClient;
-        public VM_Client unClient
+        private VM_UnClient _unClient;
+        public VM_UnClient unClient
         {
             get { return _unClient; }
-            set { AssignerChamp<VM_Client>(ref _unClient, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            set { AssignerChamp<VM_UnClient>(ref _unClient, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         private ObservableCollection<C_Client> _bcpClients = new ObservableCollection<C_Client>();
         public ObservableCollection<C_Client> bcpClients
@@ -64,16 +69,10 @@ namespace WpfApp_Garage.ViewModel
         public BaseCommande commandeEssaiSelMult { get; set; }
         #endregion
 
-        public Client()
+        public VM_Client()
         {
-            unClient = new VM_Client();
-            unClient.id = 24;
-            unClient.nom = "BEN MOUSSA";
-            unClient.prenom = "Adil";
-            unClient.dateNaissance = DateTime.Today;
-            unClient.adresse = "Avenue de Lille 2 Liège 4020";
-            unClient.numeroTelephone = "+32486255765";
-            unClient.adresseEmail = "adil-benmoussa@hotmail.fr";
+            unClient = new VM_UnClient();
+          
             bcpClients = ChargerClients(chaineConnexion);
             ActiverUneFiche = false;
             commandeConfirmer = new BaseCommande(Confirmer);
@@ -97,12 +96,12 @@ namespace WpfApp_Garage.ViewModel
         {
             if (nAjout == -1)
             {
-                unClient.id = new G_Client(chaineConnexion).Ajouter(unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
+                unClient.id = new G_Client(chaineConnexion).Ajouter(unClient.nom, unClient.prenom, (DateTime?)unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
                 bcpClients.Add(new C_Client(unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail));
             }
             else
             {
-                new G_Client(chaineConnexion).Modifier(unClient.id, unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
+                new G_Client(chaineConnexion).Modifier(unClient.id, unClient.nom, unClient.prenom, (DateTime?)unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
                 bcpClients[nAjout] = new C_Client(unClient.id, unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
             }
             ActiverUneFiche = false;
@@ -115,34 +114,35 @@ namespace WpfApp_Garage.ViewModel
 
         public void Ajouter()
         {
-            unClient = new VM_Client();
+            unClient = new VM_UnClient();
             nAjout = -1;
             ActiverUneFiche = true;
         }
 
         public void Modifier()
         {
-            if (clientSelectionne != null)
+            if (clientSelectionnee != null)
             {
                 C_Client Tmp = new G_Client(chaineConnexion).Lire_ID(unClient.id);
-                unClient = new VM_Client();
+                unClient = new VM_UnClient();
                 unClient.id = Tmp.id;
                 unClient.prenom = Tmp.prenom;
                 unClient.nom = Tmp.nom;
-                unClient.dateNaissance = (DateTime)Tmp.dateNaissance;
+                
+                unClient.dateNaissance = Convert.ToDateTime(Tmp.dateNaissance);
                 unClient.adresse = Tmp.adresse;
                 unClient.numeroTelephone = Tmp.numeroTelephone;
                 unClient.adresseEmail = Tmp.adresseEmail;
-                nAjout = bcpClients.IndexOf(clientSelectionne);
+                nAjout = bcpClients.IndexOf(clientSelectionnee);
                 ActiverUneFiche = true;
             }
         }
         public void Supprimer()
         {
-            if (clientSelectionne != null)
+            if (clientSelectionnee != null)
             {
-                new G_Client(chaineConnexion).Supprimer(clientSelectionne.id);
-                bcpClients.Remove(clientSelectionne);
+                new G_Client(chaineConnexion).Supprimer(clientSelectionnee.id);
+                bcpClients.Remove(clientSelectionnee);
             }
         }
 
@@ -154,18 +154,18 @@ namespace WpfApp_Garage.ViewModel
             int nTmp = lTmp.Count;
         }
 
-        public void ClientSelectionne2UnClient()
+        public void ClientSelectionnee2UnClient()
         {
-            unClient.id = clientSelectionne.id;
-            unClient.nom = clientSelectionne.nom;
-            unClient.prenom = clientSelectionne.prenom;
-            unClient.dateNaissance = (DateTime)clientSelectionne.dateNaissance;
-            unClient.adresse = clientSelectionne.adresse;
-            unClient.numeroTelephone = clientSelectionne.numeroTelephone;
-            unClient.adresseEmail = clientSelectionne.adresseEmail;
+            unClient.id = clientSelectionnee.id;
+            unClient.nom = clientSelectionnee.nom;
+            unClient.prenom = clientSelectionnee.prenom;
+            unClient.dateNaissance = Convert.ToDateTime(clientSelectionnee.dateNaissance);
+            unClient.adresse = clientSelectionnee.adresse;
+            unClient.numeroTelephone = clientSelectionnee.numeroTelephone;
+            unClient.adresseEmail = clientSelectionnee.adresseEmail;
         }
 
-        public class VM_Client : BasePropriete
+        public class VM_UnClient : BasePropriete
         {
             private int _id;
             private string _nom, _prenom, _adresse, _numeroTelephone, _adresseEmail;

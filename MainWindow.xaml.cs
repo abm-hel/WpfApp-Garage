@@ -25,6 +25,8 @@ namespace WpfApp_Garage
             InitializeComponent();
         }
 
+     
+
         private void boutonClients_Click(object sender, RoutedEventArgs e)
         {
             View.Clients fenetre = new View.Clients();

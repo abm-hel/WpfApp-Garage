@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -91,7 +92,7 @@
     <Compile Include="Model\G_TypeEntretien_Piece.cs" />
     <Compile Include="Model\G_Vehicule.cs" />
     <Compile Include="ViewModel\Base.cs" />
-    <Compile Include="ViewModel\Client.cs" />
+    <Compile Include="ViewModel\VM_Client.cs" />
     <Compile Include="View\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>

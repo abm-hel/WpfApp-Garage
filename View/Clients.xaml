@@ -37,31 +37,31 @@
             
             <TextBlock Name="textBlockId" Text="Identifiant" VerticalAlignment="Center" />
             <TextBox Name="textBoxId" Grid.Column="1" Margin="3"
-            Text="{Binding Path=UnePersonne.id, Mode=TwoWay}" />
+            Text="{Binding Path=unClient.id, Mode=TwoWay}" />
 
             <TextBlock Name="textBlockNom" Text="Nom" Grid.Row="1" VerticalAlignment="Center" />
             <TextBox Name="textBoxNom" Grid.Row="1" Grid.Column="1" Margin="3"
-            Text="{Binding Path=UnePersonne.nom, Mode=TwoWay}" />
+            Text="{Binding Path=unClient.nom, Mode=TwoWay}" />
 
             <TextBlock Name="textBlockPrenom" Text="Prénom" Grid.Row="2" VerticalAlignment="Center" />
             <TextBox Name="textBoxPrenom" Grid.Row="2" Grid.Column="1" Margin="3"
-            Text="{Binding Path=UnePersonne.prenom, Mode=TwoWay}" />
+            Text="{Binding Path=unClient.prenom, Mode=TwoWay}" />
 
             <TextBlock Name="textBlockDateNaissance" Text="Date de naissance" Grid.Row="3" VerticalAlignment="Center" />
             <DatePicker Name="datePickeDateNaissance" Grid.Row="3" Grid.Column="1" Margin="3" 
-               SelectedDate="{Binding Path=UnePersonne.dateNaissance, Mode=TwoWay, StringFormat='dd/mm/yyyy'}" />
+               SelectedDate="{Binding Path=unClient.dateNaissance, Mode=TwoWay, StringFormat='dd/mm/yyyy'}" />
 
             <TextBlock Name="textBlockAdresse" Text="Adresse" Grid.Row="4" VerticalAlignment="Center" />
             <TextBox Name="textBoxAdresse" Grid.Row="4" Grid.Column="1" Margin="3"
-            Text="{Binding Path=UnePersonne.adresse, Mode=TwoWay}" />
+            Text="{Binding Path=unClient.adresse, Mode=TwoWay}" />
 
             <TextBlock Name="textBlockNumeroTelephone" Text="Télephone" Grid.Row="5" VerticalAlignment="Center" />
             <TextBox Name="textBoxNumeroTelephone" Grid.Row="5" Grid.Column="1" Margin="3"
-            Text="{Binding Path=UnePersonne.numeroTelephone, Mode=TwoWay}"  />
+            Text="{Binding Path=unClient.numeroTelephone, Mode=TwoWay}"  />
 
             <TextBlock Name="textBlockAdresseEmail" Text="Email" Grid.Row="6" VerticalAlignment="Center" />
             <TextBox Name="textBoxAdresseEmail" Grid.Row="6" Grid.Column="1" Margin="3"
-            Text="{Binding Path=UnePersonne.adresseEmail, Mode=TwoWay}" />
+            Text="{Binding Path=unClient.adresseEmail, Mode=TwoWay}" />
 
         </Grid>
         
@@ -72,9 +72,9 @@
            Command="{Binding commandeAnnuler}" />
         </StackPanel>
 
-        <DataGrid Name="dataGridClients" ItemsSource="{Binding Path=BcpPersonnes}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+        <DataGrid Name="dataGridClients" ItemsSource="{Binding Path=bcpClients}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding PersonneSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridPersonnes_SelectionChanged">
+            SelectedItem="{Binding clientSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridPersonnes_SelectionChanged">
             
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
@@ -82,7 +82,7 @@
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Path=prenom}" Width="*" />
                 <DataGridTextColumn Header="Date de naissance" Binding="{Binding Path=dateNaissance, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
                 <DataGridTextColumn Header="Adresse" Binding="{Binding Path=adresse}" />
-                <DataGridTextColumn Header="Télephone" Binding="{Binding Path=telephone}" Width="*" />
+                <DataGridTextColumn Header="Télephone" Binding="{Binding Path=numeroTelephone}" Width="*" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Path=adresseEmail}" Width="*" />
             </DataGrid.Columns>
             
@@ -90,13 +90,13 @@
         
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
             <Button Name="buttonAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cAjouter}" />
+           Command="{Binding commandeAjouter}" Click="buttonAjouter_Click" />
             <Button Name="buttonModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cModifier}" />
+           Command="{Binding commandeModifier}" />
             <Button Name="buttonSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cSupprimer}" />
+           Command="{Binding commandeSupprimer}" />
             <Button x:Name="buttonEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cEssaiSelMult}"
+           Command="{Binding commandeEssaiSelMult}"
            CommandParameter="{Binding ElementName=dataGridPersonnes, Path=SelectedItems}" />
         </StackPanel>
         

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using Projet_Garage.Classes;
+using WpfApp_Garage;
 
 namespace WpfApp_Garage.View
 {
@@ -20,11 +22,12 @@ namespace WpfApp_Garage.View
     /// </summary>
     public partial class Clients : Window
     {
+
         private ViewModel.VM_Client localClient;
         public Clients()
         {
             InitializeComponent();
-            localClient = new VM_Client();
+            localClient = new ViewModel.VM_Client();
             DataContext = localClient;
             FlowDocument fd = new FlowDocument();
             Paragraph p = new Paragraph();
@@ -49,7 +52,12 @@ namespace WpfApp_Garage.View
         private void dataGridPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGridClients.SelectedIndex >= 0)
-                localClient.ClientSelectionne2UnClient();
+                localClient.ClientSelectionnee2UnClient();
+        }
+
+        private void buttonAjouter_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
