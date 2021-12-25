@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Projet_Garage.Model;
+using Projet_Garage.Classes;
 using Projet_Garage.Acces;
 #endregion
 
-namespace Projet_Garage.Model
+namespace Projet_Garage.Gestion
 {
  /// <summary>
  /// Couche intermédiaire de gestion (Business Layer)

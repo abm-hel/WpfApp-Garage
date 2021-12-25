@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Projet_Garage.Model;
+using Projet_Garage.Classes;
+using Projet_Garage.Gestion;
 
 namespace WpfApp_Garage.ViewModel
 {
@@ -70,13 +71,23 @@ namespace WpfApp_Garage.ViewModel
             unClient.nom = "BEN MOUSSA";
             unClient.prenom = "Adil";
             unClient.dateNaissance = DateTime.Today;
+            unClient.adresse = "Avenue de Lille 2 Liège 4020";
+            unClient.numeroTelephone = "+32486255765";
+            unClient.adresseEmail = "adil-benmoussa@hotmail.fr";
+            bcpClients = ChargerClients(chaineConnexion);
             ActiverUneFiche = false;
+            commandeConfirmer = new BaseCommande(Confirmer);
+            commandeAnnuler = new BaseCommande(Annuler);
+            commandeAjouter = new BaseCommande(Ajouter);
+            commandeModifier = new BaseCommande(Modifier);
+            commandeSupprimer = new BaseCommande(Supprimer);
+            commandeEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
 
         private ObservableCollection<C_Client> ChargerClients(string chaineConnexion)
         {
             ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
-            List<C_Client> lTmp = new G_Client (chaineConnexion).Lire();
+            List<C_Client> lTmp = new G_Client (chaineConnexion).Lire("id");
             foreach (C_Client Tmp in lTmp)
                 rep.Add(Tmp);
             return rep;
@@ -151,9 +162,8 @@ namespace WpfApp_Garage.ViewModel
             unClient.dateNaissance = (DateTime)clientSelectionne.dateNaissance;
             unClient.adresse = clientSelectionne.adresse;
             unClient.numeroTelephone = clientSelectionne.numeroTelephone;
-            unClient.adresseEmail = clientSelectionne.adresseEmail
+            unClient.adresseEmail = clientSelectionne.adresseEmail;
         }
-
 
         public class VM_Client : BasePropriete
         {

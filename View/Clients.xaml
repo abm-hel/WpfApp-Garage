@@ -72,7 +72,7 @@
            Command="{Binding commandeAnnuler}" />
         </StackPanel>
 
-        <DataGrid Name="dataGridPersonnes" ItemsSource="{Binding Path=BcpPersonnes}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+        <DataGrid Name="dataGridClients" ItemsSource="{Binding Path=BcpPersonnes}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
             SelectedItem="{Binding PersonneSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridPersonnes_SelectionChanged">
             
@@ -99,6 +99,7 @@
            Command="{Binding cEssaiSelMult}"
            CommandParameter="{Binding ElementName=dataGridPersonnes, Path=SelectedItems}" />
         </StackPanel>
+        
         <RichTextBox Name="richTextBoxDoc" Grid.Column="1" Grid.RowSpan="4" />
     </Grid>
 </Window>
