@@ -74,7 +74,7 @@
 
         <DataGrid Name="dataGridClients" ItemsSource="{Binding Path=bcpClients}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding clientSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridPersonnes_SelectionChanged">
+            SelectedItem="{Binding clientSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridClients_SelectionChanged">
             
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />

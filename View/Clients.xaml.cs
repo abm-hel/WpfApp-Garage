@@ -53,7 +53,7 @@ namespace WpfApp_Garage.View
             
         }
 
-        private void dataGridPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dataGridClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGridClients.SelectedIndex >= 0)
                 localClient.ClientSelectionnee2UnClient();
