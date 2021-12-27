@@ -95,9 +95,11 @@
            Command="{Binding commandeModifier}" />
             <Button Name="buttonSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding commandeSupprimer}" />
-            <Button x:Name="buttonEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
+            
+          <!--  <Button x:Name="buttonEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding commandeEssaiSelMult}"
-           CommandParameter="{Binding ElementName=dataGridPersonnes, Path=SelectedItems}" />
+           CommandParameter="{Binding ElementName=dataGridPersonnes, Path=SelectedItems}" /> -->
+            
         </StackPanel>
         
         <RichTextBox Name="richTextBoxDoc" Grid.Column="1" Grid.RowSpan="4" />

@@ -65,7 +65,7 @@ namespace WpfApp_Garage.ViewModel
         public BaseCommande commandeAjouter { get; set; }
         public BaseCommande commandeModifier { get; set; }
         public BaseCommande commandeSupprimer { get; set; }
-        public BaseCommande commandeEssaiSelMult { get; set; }
+       // public BaseCommande commandeEssaiSelMult { get; set; }
         #endregion
 
         public VM_Client()
@@ -79,7 +79,7 @@ namespace WpfApp_Garage.ViewModel
             commandeAjouter = new BaseCommande(Ajouter);
             commandeModifier = new BaseCommande(Modifier);
             commandeSupprimer = new BaseCommande(Supprimer);
-            commandeEssaiSelMult = new BaseCommande(EssaiSelMult);
+            //commandeEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
 
         private ObservableCollection<C_Client> ChargerClients(string chaineConnexion)
@@ -145,13 +145,13 @@ namespace WpfApp_Garage.ViewModel
             }
         }
 
-        public void EssaiSelMult(object lListe)
+       /* public void EssaiSelMult(object lListe)
         {
             System.Collections.IList lTmp = (System.Collections.IList)lListe;
             foreach (C_Client p in lTmp)
             { string s = p.nom; }
             int nTmp = lTmp.Count;
-        }
+        }*/
 
         public void ClientSelectionnee2UnClient()
         {
