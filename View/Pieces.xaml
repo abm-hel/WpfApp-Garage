@@ -5,8 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Garage.View"
         mc:Ignorable="d"
-        Title="Pieces" Height="450" Width="800">
-    <Grid>
+        Title="Pièces" Height="450" Width="800">
+    
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox AcceptsReturn="True" Grid.ColumnSpan="2" />
+        
+        <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="textBlockId" Text="Identifiant" VerticalAlignment="Center" />
+            <TextBox Name="textBoxId" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unePiece.id, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockNom" Text="Pièce" Grid.Row="1" VerticalAlignment="Center" />
+            <TextBox Name="textBoxNom" Grid.Row="1" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unePiece.nom, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockPrenom" Text="Fabricant" Grid.Row="2" VerticalAlignment="Center" />
+            <TextBox Name="textBoxPrenom" Grid.Row="2" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unePiece.fabricant, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockAdresse" Text="Prix" Grid.Row="3" VerticalAlignment="Center" />
+            <TextBox Name="textBoxAdresse" Grid.Row="3" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unePiece.prix, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockNumeroTelephone" Text="TVA" Grid.Row="4" VerticalAlignment="Center" />
+            <TextBox Name="textBoxNumeroTelephone" Grid.Row="4" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unePiece.tva, Mode=TwoWay}"  />
+
+            <TextBlock Name="textBlockAdresseEmail" Text="Quantité" Grid.Row="5" VerticalAlignment="Center" />
+            <TextBox Name="textBoxAdresseEmail" Grid.Row="5" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unePiece.quantite, Mode=TwoWay}" />
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+            <Button Name="buttonConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
+           Command="{Binding commandeConfirmer}" />
+            <Button Name="buttonAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
+           Command="{Binding commandeAnnuler}" />
+        </StackPanel>
+
+        <DataGrid Name="dataGridPieces" ItemsSource="{Binding Path=bcpPieces}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+            SelectedItem="{Binding piecetSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridPieces_SelectionChanged">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                <DataGridTextColumn Header="Pièce" Binding="{Binding Path=nom}" Width="*" />
+                <DataGridTextColumn Header="Fabricant" Binding="{Binding Path=fabricant}" Width="*" />
+                <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" />
+                <DataGridTextColumn Header="TVA" Binding="{Binding Path=tva}" Width="*" />
+                <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
+            <Button Name="buttonAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeAjouter}" />
+            <Button Name="buttonModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeModifier}" />
+            <Button Name="buttonSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeSupprimer}" />
+
+        </StackPanel>
+
+        <RichTextBox Name="richTextBoxDoc" Grid.Column="1" Grid.RowSpan="4" />
+
     </Grid>
 </Window>
