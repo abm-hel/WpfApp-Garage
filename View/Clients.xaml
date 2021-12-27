@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp_Garage.View"
         mc:Ignorable="d"
         Title="Clients" Height="450" Width="800">
+    
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

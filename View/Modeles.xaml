@@ -6,7 +6,104 @@
         xmlns:local="clr-namespace:WpfApp_Garage.View"
         mc:Ignorable="d"
         Title="Modeles" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="3">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox AcceptsReturn="True" Grid.ColumnSpan="2" />
+
+        <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="textBlockId" Text="Identifiant" VerticalAlignment="Center" />
+            <TextBox Name="textBoxId" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.id, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockModele" Text="Modèle" Grid.Row="1" VerticalAlignment="Center" />
+            <TextBox Name="textBoxModele" Grid.Row="1" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.modele, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockMotorisation" Text="Motorisation" Grid.Row="2" VerticalAlignment="Center" />
+            <TextBox Name="textBoxMotorisation" Grid.Row="2" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.motorisation, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockCarburant" Text="Carburant" Grid.Row="3" VerticalAlignment="Center" />
+            <TextBox Name="textBoxCarburant" Grid.Row="3" Grid.Column="1" Margin="3" 
+              Text="{Binding Path=unModele.carburant, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockCylindree" Text="Cylindrée" Grid.Row="4" VerticalAlignment="Center" />
+            <TextBox Name="textBoxCylindree" Grid.Row="4" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.cylindree, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockPuissance" Text="Puissance" Grid.Row="5" VerticalAlignment="Center" />
+            <TextBox Name="textBoxPuissance" Grid.Row="5" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.puissance, Mode=TwoWay}"  />
+
+            <TextBlock Name="textBlockConsommation" Text="Consommation" Grid.Row="6" VerticalAlignment="Center" />
+            <TextBox Name="textBoxConsommation" Grid.Row="6" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.consommation, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockPoids" Text="Poids" Grid.Row="7" VerticalAlignment="Center" />
+            <TextBox Name="textBoxPoids" Grid.Row="7" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unModele.poids, Mode=TwoWay}" />
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+            <Button Name="buttonConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
+           Command="{Binding commandeConfirmer}" />
+            <Button Name="buttonAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
+           Command="{Binding commandeAnnuler}" />
+        </StackPanel>
+
+        <DataGrid Name="dataGridModeles" ItemsSource="{Binding Path=bcpModeles}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+            SelectedItem="{Binding modeleSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridModeles_SelectionChanged">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                <DataGridTextColumn Header="Modèle" Binding="{Binding Path=modele}" Width="*" />
+                <DataGridTextColumn Header="Motorisation" Binding="{Binding Path=motorisation}" Width="*" />
+                <DataGridTextColumn Header="Carburant" Binding="{Binding Path=carburant}" Width="*" />
+                <DataGridTextColumn Header="Cylindrée" Binding="{Binding Path=cylindree}" Width="*"/>
+                <DataGridTextColumn Header="Puissance" Binding="{Binding Path=puissance}" />
+                <DataGridTextColumn Header="Consommation" Binding="{Binding Path=consommation}" Width="*" />
+                <DataGridTextColumn Header="Poids" Binding="{Binding Path=poids}" Width="*" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
+            <Button Name="buttonAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeAjouter}" />
+            <Button Name="buttonModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeModifier}" />
+            <Button Name="buttonSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeSupprimer}" />
+        </StackPanel>
+
     </Grid>
 </Window>
