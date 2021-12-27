@@ -44,7 +44,7 @@ namespace WpfApp_Garage.View
             }
             fd.Blocks.Add(l);
             richTextBoxDoc.Document = fd;
-            FileStream fs = new FileStream(@"C:\essai.rtf", FileMode.Create);
+            FileStream fs = new FileStream(@"clients.rtf", FileMode.Create);
             TextRange tr = new TextRange(richTextBoxDoc.Document.ContentStart, richTextBoxDoc.Document.ContentEnd);
             tr.Save(fs, System.Windows.DataFormats.Rtf);
         }
