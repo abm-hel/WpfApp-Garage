@@ -38,8 +38,11 @@ namespace WpfApp_Garage.View
             List l = new List();
             foreach (C_Client cp in localClient.bcpClients)
             {
+                DateTime dateCp = new DateTime();
+                dateCp = (DateTime)cp.dateNaissance;
+                
                 Paragraph pl = new Paragraph(new Run(cp.prenom + " " + cp.nom
-                 + " (" + cp.dateNaissance + ")"));
+                 + " (" + dateCp.Day.ToString("D2") + "/"+ dateCp.Month.ToString("D2") + "/" + dateCp.Year.ToString("D4") + ")"));
                 l.ListItems.Add(new ListItem(pl));
             }
             fd.Blocks.Add(l);
@@ -47,17 +50,13 @@ namespace WpfApp_Garage.View
             FileStream fs = new FileStream(@"clients.rtf", FileMode.Create);
             TextRange tr = new TextRange(richTextBoxDoc.Document.ContentStart, richTextBoxDoc.Document.ContentEnd);
             tr.Save(fs, System.Windows.DataFormats.Rtf);
+            
         }
 
         private void dataGridPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGridClients.SelectedIndex >= 0)
                 localClient.ClientSelectionnee2UnClient();
-        }
-
-        private void buttonAjouter_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

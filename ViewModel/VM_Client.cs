@@ -84,6 +84,7 @@ namespace WpfApp_Garage.ViewModel
 
         private ObservableCollection<C_Client> ChargerClients(string chaineConnexion)
         {
+            unClient.dateNaissance = DateTime.Today;
             ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
             List<C_Client> lTmp = new G_Client (chaineConnexion).Lire("id");
             foreach (C_Client Tmp in lTmp)
@@ -116,6 +117,8 @@ namespace WpfApp_Garage.ViewModel
             unClient = new VM_UnClient();
             nAjout = -1;
             ActiverUneFiche = true;
+            unClient.dateNaissance = DateTime.Today;
+
         }
 
         public void Modifier()

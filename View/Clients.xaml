@@ -90,7 +90,7 @@
         
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
             <Button Name="buttonAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeAjouter}" Click="buttonAjouter_Click" />
+           Command="{Binding commandeAjouter}" />
             <Button Name="buttonModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding commandeModifier}" />
             <Button Name="buttonSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
