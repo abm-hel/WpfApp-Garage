@@ -15,8 +15,7 @@ namespace WpfApp_Garage.ViewModel
         #region Données Écran
 
         
-        //@"Data Source=MSI\SQLEXPRESS;AttachDbFilename=D:\BD_ClubDeFootball\BD_ClubDeSport.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-        private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.a"].ConnectionString;
+        private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.chaineConnexionBD"].ConnectionString;
 
         private int nAjout;
         private bool _ActiverUneFiche;

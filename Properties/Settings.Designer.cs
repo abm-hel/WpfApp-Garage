@@ -28,9 +28,9 @@ namespace WpfApp_Garage.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SQLEXPRESS;AttachDbFilename=\"C:\\Program Files\\Microsoft SQL Serve" +
             "r\\MSSQL15.SQLEXPRESS\\MSSQL\\DATA\\Garage.mdf\";Integrated Security=True")]
-        public string a {
+        public string chaineConnexionBD {
             get {
-                return ((string)(this["a"]));
+                return ((string)(this["chaineConnexionBD"]));
             }
         }
     }
