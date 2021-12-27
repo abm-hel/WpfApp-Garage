@@ -37,5 +37,11 @@ namespace WpfApp_Garage
         {
             Close();
         }
+
+        private void boutonModeles_Click(object sender, RoutedEventArgs e)
+        {
+            View.Modeles fenetre = new View.Modeles();
+            fenetre.ShowDialog();
+        }
     }
 }

@@ -9,6 +9,7 @@
     <Grid>
         <StackPanel VerticalAlignment="Top">
             <Button Name="boutonClients" Content="Clients" Margin="5" Click="boutonClients_Click"/>
+            <Button Name="boutonModeles" Content="Modèles" Margin="5" Click="boutonModeles_Click"/>
             <Button Name="boutonQuitter" Content="Quitter" Margin="5" Click="boutonQuitter_Click"/>
         </StackPanel>
     </Grid>
