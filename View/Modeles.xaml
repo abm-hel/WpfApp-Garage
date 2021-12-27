@@ -105,5 +105,7 @@
            Command="{Binding commandeSupprimer}" />
         </StackPanel>
 
+        <RichTextBox Name="richTextBoxDoc" Grid.Column="1" Grid.RowSpan="4"/>
+
     </Grid>
 </Window>

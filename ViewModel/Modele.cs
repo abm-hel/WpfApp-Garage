@@ -81,6 +81,15 @@ namespace WpfApp_Garage.ViewModel
             //commandeEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
 
+        private ObservableCollection<C_Modele> ChargerModeles(string chaineConnexion)
+        {
+            ObservableCollection<C_Modele> rep = new ObservableCollection<C_Modele>();
+            List<C_Modele> lTmp = new G_Modele(chaineConnexion).Lire("id");
+            foreach (C_Modele Tmp in lTmp)
+                rep.Add(Tmp);
+            return rep;
+        }
+
         public void Confirmer()
         {
             if (nAjout == -1)
@@ -130,19 +139,12 @@ namespace WpfApp_Garage.ViewModel
         {
             if (modeleSelectionnee != null)
             {
-                new G_Client(chaineConnexion).Supprimer(modeleSelectionnee.id);
+                new G_Modele(chaineConnexion).Supprimer(modeleSelectionnee.id);
                 bcpModeles.Remove(modeleSelectionnee);
             }
         }
 
-        private ObservableCollection<C_Modele> ChargerModeles(string chaineConnexion)
-        {
-            ObservableCollection<C_Modele> rep = new ObservableCollection<C_Modele>();
-            List<C_Modele> lTmp = new G_Modele(chaineConnexion).Lire("id");
-            foreach (C_Modele Tmp in lTmp)
-                rep.Add(Tmp);
-            return rep;
-        }
+     
 
         public void ModeleSelectionnee2UnModele()
         {

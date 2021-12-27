@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using Projet_Garage.Classes;
-using WpfApp_Garage;
+
 
 namespace WpfApp_Garage.View
 {
