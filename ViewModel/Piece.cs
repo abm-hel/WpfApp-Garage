@@ -138,7 +138,7 @@ namespace WpfApp_Garage.ViewModel
         {
             if (pieceSelectionnee != null)
             {
-                new G_Client(chaineConnexion).Supprimer(pieceSelectionnee.id);
+                new G_Piece(chaineConnexion).Supprimer(pieceSelectionnee.id);
                 bcpPieces.Remove(pieceSelectionnee);
             }
         }
