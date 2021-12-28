@@ -43,5 +43,62 @@ namespace WpfApp_Garage.ViewModel
             set { AssignerChamp<C_Intervention>(ref _interventionSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         #endregion
+
+        #region Données extérieures
+        private VM_UneIntervention _uneIntervention;
+        public VM_UneIntervention uneIntervention
+        {
+            get { return _uneIntervention; }
+            set { AssignerChamp<VM_UneIntervention>(ref _uneIntervention, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        private ObservableCollection<C_Intervention> _bcpInterventions = new ObservableCollection<C_Intervention>();
+        public ObservableCollection<C_Intervention> bcpInterventions
+        {
+            get { return _bcpInterventions; }
+            set { _bcpInterventions = value; }
+        }
+        #endregion
+
+        public class VM_UneIntervention : BasePropriete
+        {
+            private int _id, _nombreHeures;
+            private string _description;
+            private double _tva, _prixTotal, _prixHeure;
+
+            public int id
+            {
+                get { return _id; }
+                set { AssignerChamp<int>(ref _id, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+            public string description
+            {
+                get { return _description; }
+                set { AssignerChamp<string>(ref _description, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public int nombreHeures
+            {
+                get { return _nombreHeures; }
+                set { AssignerChamp<int>(ref _nombreHeures, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double prixHeure
+            {
+                get { return _prixHeure; }
+                set { AssignerChamp<double>(ref _prixHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double tva
+            {
+                get { return _tva; }
+                set { AssignerChamp<double>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double prixTotal
+            {
+                get { return _prixTotal; }
+                set { AssignerChamp<double>(ref _prixTotal, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+        }
     }
 }
