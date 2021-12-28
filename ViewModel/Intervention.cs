@@ -69,6 +69,89 @@ namespace WpfApp_Garage.ViewModel
         // public BaseCommande commandeEssaiSelMult { get; set; }
         #endregion
 
+        public VM_Intervention()
+        {
+            uneIntervention = new VM_UneIntervention();
+
+            bcpInterventions = ChargerInterventions(chaineConnexion);
+            ActiverUneFiche = false;
+            commandeConfirmer = new BaseCommande(Confirmer);
+            commandeAnnuler = new BaseCommande(Annuler);
+            commandeAjouter = new BaseCommande(Ajouter);
+            commandeModifier = new BaseCommande(Modifier);
+            commandeSupprimer = new BaseCommande(Supprimer);
+            //commandeEssaiSelMult = new BaseCommande(EssaiSelMult);
+        }
+
+        private ObservableCollection<C_Intervention> ChargerInterventions(string chaineConnexion)
+        {
+            ObservableCollection<C_Intervention> rep = new ObservableCollection<C_Intervention>();
+            List<C_Intervention> lTmp = new G_Intervention(chaineConnexion).Lire("id");
+            foreach (C_Intervention Tmp in lTmp)
+                rep.Add(Tmp);
+            return rep;
+        }
+
+        public void Confirmer()
+        {
+            if (nAjout == -1)
+            {
+                uneIntervention.id = new G_Intervention(chaineConnexion).Ajouter(uneIntervention.description, uneIntervention.nombreHeures, uneIntervention.prixHeure, uneIntervention.tva, uneIntervention.prixTotal);
+                bcpInterventions.Add(new C_Intervention(uneIntervention.description, uneIntervention.nombreHeures, uneIntervention.prixHeure, uneIntervention.tva, uneIntervention.prixTotal));
+            }
+            else
+            {
+                new G_Intervention(chaineConnexion).Modifier(uneIntervention.id, uneIntervention.description, uneIntervention.nombreHeures, uneIntervention.prixHeure, uneIntervention.tva, uneIntervention.prixTotal);
+                bcpInterventions[nAjout] = new C_Intervention(uneIntervention.id, uneIntervention.description, uneIntervention.nombreHeures, uneIntervention.prixHeure, uneIntervention.tva, uneIntervention.prixTotal);
+            }
+            ActiverUneFiche = false;
+        }
+        public void Annuler()
+        {
+            ActiverUneFiche = false;
+        }
+
+        public void Ajouter()
+        {
+            uneIntervention = new VM_UneIntervention();
+            nAjout = -1;
+            ActiverUneFiche = true;
+        }
+
+        public void Modifier()
+        {
+            if (interventionSelectionnee != null)
+            {
+                C_Intervention Tmp = new G_Intervention(chaineConnexion).Lire_ID(uneIntervention.id);
+                uneIntervention = new VM_UneIntervention();
+                uneIntervention.id = Tmp.id;
+                uneIntervention.description = Tmp.description;
+                uneIntervention.nombreHeures = (int)Tmp.nombreHeures;
+                uneIntervention.prixHeure = (double)Tmp.prixHeure;
+                uneIntervention.tva = (double)Tmp.tva;
+                uneIntervention.prixTotal = (double)Tmp.prixTotal;
+                ActiverUneFiche = true;
+            }
+        }
+        public void Supprimer()
+        {
+            if (interventionSelectionnee != null)
+            {
+                new G_Intervention(chaineConnexion).Supprimer(interventionSelectionnee.id);
+                bcpInterventions.Remove(interventionSelectionnee);
+            }
+        }
+
+        public void InterventionSelectionnee2UneIntervention()
+        {
+            uneIntervention.id = interventionSelectionnee.id;
+            uneIntervention.description = interventionSelectionnee.description;
+            uneIntervention.nombreHeures = (int)interventionSelectionnee.nombreHeures;
+            uneIntervention.prixHeure = (double)interventionSelectionnee.prixHeure;
+            uneIntervention.tva = (double)interventionSelectionnee.tva;
+            uneIntervention.prixTotal = (double)interventionSelectionnee.prixTotal;
+        }
+
         public class VM_UneIntervention : BasePropriete
         {
             private int _id, _nombreHeures;
