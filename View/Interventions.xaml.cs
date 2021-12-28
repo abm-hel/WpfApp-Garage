@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using Projet_Garage.Classes;
 
 namespace WpfApp_Garage.View
 {
@@ -19,14 +21,36 @@ namespace WpfApp_Garage.View
     /// </summary>
     public partial class Interventions : Window
     {
+        private ViewModel.VM_Intervention localIntervention;
         public Interventions()
         {
             InitializeComponent();
+            localIntervention = new ViewModel.VM_Intervention();
+            DataContext = localIntervention;
+            FlowDocument fd = new FlowDocument();
+            Paragraph p = new Paragraph();
+            p.Inlines.Add(new Bold(new Run("Titre de document")));
+            p.Inlines.Add(new LineBreak());
+            p.Inlines.Add(new Run("Liste des interventions encodées"));
+            fd.Blocks.Add(p);
+            List l = new List();
+            foreach (C_Intervention cp in localIntervention.bcpInterventions)
+            {
+                Paragraph pl = new Paragraph(new Run(cp.description + " - " + cp.prixTotal.ToString()
+                  + " €"));
+                l.ListItems.Add(new ListItem(pl));
+            }
+            fd.Blocks.Add(l);
+            richTextBoxDoc.Document = fd;
+            FileStream fs = new FileStream(@"intervention.rtf", FileMode.Create);
+            TextRange tr = new TextRange(richTextBoxDoc.Document.ContentStart, richTextBoxDoc.Document.ContentEnd);
+            tr.Save(fs, System.Windows.DataFormats.Rtf);
         }
 
         private void dataGridInterventions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dataGridInterventions.SelectedIndex >= 0)
+                localIntervention.InterventionSelectionnee2UneIntervention();
         }
     }
 }

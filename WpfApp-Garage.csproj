@@ -93,10 +93,14 @@
     <Compile Include="Model\G_Vehicule.cs" />
     <Compile Include="ViewModel\Base.cs" />
     <Compile Include="ViewModel\Client.cs" />
+    <Compile Include="ViewModel\Intervention.cs" />
     <Compile Include="ViewModel\Modele.cs" />
     <Compile Include="ViewModel\Piece.cs" />
     <Compile Include="View\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Interventions.xaml.cs">
+      <DependentUpon>Interventions.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Modeles.xaml.cs">
       <DependentUpon>Modeles.xaml</DependentUpon>
@@ -117,6 +121,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Interventions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
