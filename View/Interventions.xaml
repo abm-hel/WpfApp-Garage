@@ -70,7 +70,7 @@
 
         <DataGrid Name="dataGridInterventions" ItemsSource="{Binding Path=bcpInterventions}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding InterventionSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged">
+            SelectedItem="{Binding interventionSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
