@@ -59,6 +59,16 @@ namespace WpfApp_Garage.ViewModel
         }
         #endregion
 
+
+        #region Commandes
+        public BaseCommande commandeConfirmer { get; set; }
+        public BaseCommande commandeAnnuler { get; set; }
+        public BaseCommande commandeAjouter { get; set; }
+        public BaseCommande commandeModifier { get; set; }
+        public BaseCommande commandeSupprimer { get; set; }
+        // public BaseCommande commandeEssaiSelMult { get; set; }
+        #endregion
+
         public class VM_UneIntervention : BasePropriete
         {
             private int _id, _nombreHeures;
