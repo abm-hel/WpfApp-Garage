@@ -1,0 +1,97 @@
+﻿<Window x:Class="WpfApp_Garage.View.Interventions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_Garage.View"
+        mc:Ignorable="d"
+        Title="Interventions" Height="450" Width="800">
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox AcceptsReturn="True" Grid.ColumnSpan="2" />
+
+        <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="textBlockId" Text="Identifiant" VerticalAlignment="Center" />
+            <TextBox Name="textBoxId" Grid.Column="1" Margin="3"
+            Text="{Binding Path=uneIntervention.id, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockNom" Text="Description" Grid.Row="1" VerticalAlignment="Center" />
+            <TextBox Name="textBoxNom" Grid.Row="1" Grid.Column="1" Margin="3"
+            Text="{Binding Path=uneIntervention.description, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockPrenom" Text="Nombre heures" Grid.Row="2" VerticalAlignment="Center" />
+            <TextBox Name="textBoxPrenom" Grid.Row="2" Grid.Column="1" Margin="3"
+            Text="{Binding Path=uneIntervention.nombreHeures, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockAdresse" Text="Prix / heure" Grid.Row="3" VerticalAlignment="Center" />
+            <TextBox Name="textBoxAdresse" Grid.Row="3" Grid.Column="1" Margin="3"
+            Text="{Binding Path=uneIntervention.prixHeure, Mode=TwoWay}" />
+
+            <TextBlock Name="textBlockNumeroTelephone" Text="TVA" Grid.Row="4" VerticalAlignment="Center" />
+            <TextBox Name="textBoxNumeroTelephone" Grid.Row="4" Grid.Column="1" Margin="3"
+            Text="{Binding Path=uneIntervention.tva, Mode=TwoWay}"  />
+
+            <TextBlock Name="textBlockAdresseEmail" Text="Prix Total" Grid.Row="5" VerticalAlignment="Center" />
+            <TextBox Name="textBoxAdresseEmail" Grid.Row="5" Grid.Column="1" Margin="3"
+            Text="{Binding Path=uneIntervention.prixTotal, Mode=TwoWay}" />
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+            <Button Name="buttonConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
+           Command="{Binding commandeConfirmer}" />
+            <Button Name="buttonAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
+           Command="{Binding commandeAnnuler}" />
+        </StackPanel>
+
+        <DataGrid Name="dataGridInterventions" ItemsSource="{Binding Path=bcpInterventions}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+            SelectedItem="{Binding InterventionSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="*" />
+                <DataGridTextColumn Header="Nombre heures" Binding="{Binding Path=nombreHeures}" Width="*" />
+                <DataGridTextColumn Header="Prix / Heure" Binding="{Binding Path=prixHeure}" />
+                <DataGridTextColumn Header="TVA" Binding="{Binding Path=tva}" Width="*" />
+                <DataGridTextColumn Header="Prix Total" Binding="{Binding Path=prixTotal}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
+            <Button Name="buttonAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeAjouter}" />
+            <Button Name="buttonModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeModifier}" />
+            <Button Name="buttonSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding commandeSupprimer}" />
+
+        </StackPanel>
+
+        <RichTextBox Name="richTextBoxDoc" Grid.Column="1" Grid.RowSpan="4" />
+    </Grid>
+</Window>
