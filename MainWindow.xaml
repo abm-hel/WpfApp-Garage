@@ -11,6 +11,7 @@
             <Button Name="boutonClients" Content="Clients" Margin="5" Click="boutonClients_Click"/>
             <Button Name="boutonModeles" Content="Modèles" Margin="5" Click="boutonModeles_Click"/>
             <Button Name ="boutonPieces" Content="Pièces" Margin="5" Click="boutonPieces_Click"/>
+            <Button Name ="boutonIntervention" Content="Interventions" Margin="5" Click="boutonIntervention_Click"/>
             <Button Name="boutonQuitter" Content="Quitter" Margin="5" Click="boutonQuitter_Click"/>
         </StackPanel>
     </Grid>
