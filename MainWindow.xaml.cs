@@ -55,5 +55,11 @@ namespace WpfApp_Garage
             View.Interventions fenetre = new View.Interventions();
             fenetre.ShowDialog();
         }
+
+        private void boutonVehicule_Click(object sender, RoutedEventArgs e)
+        {
+            View.Vehicules fenetre = new View.Vehicules();
+            fenetre.ShowDialog();
+        }
     }
 }
