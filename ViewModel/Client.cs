@@ -14,7 +14,7 @@ namespace WpfApp_Garage.ViewModel
     {
         #region Données Écran
 
-        
+      
         private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.chaineConnexionBD"].ConnectionString;
 
         private int nAjout;
