@@ -6,14 +6,16 @@
         xmlns:local="clr-namespace:WpfApp_Garage"
         mc:Ignorable="d"
         Title="Garage - Tableau de bord" Height="300" Width="450">
+    
     <Grid>
         <StackPanel VerticalAlignment="Top">
             <Button Name="boutonClients" Content="Clients" Margin="5" Click="boutonClients_Click"/>
             <Button Name="boutonModeles" Content="Modèles" Margin="5" Click="boutonModeles_Click"/>
             <Button Name ="boutonPieces" Content="Pièces" Margin="5" Click="boutonPieces_Click"/>
             <Button Name ="boutonIntervention" Content="Interventions" Margin="5" Click="boutonIntervention_Click"/>
-            <Button Name ="boutonVehicule" Content="Vehicule" Margin="5" Click="boutonIntervention_Click"/>
+            <Button Name ="boutonVehicule" Content="Vehicule" Margin="5" Click="boutonVehicule_Click"/>
             <Button Name="boutonQuitter" Content="Quitter" Margin="5" Click="boutonQuitter_Click"/>
         </StackPanel>
     </Grid>
+    
 </Window>
