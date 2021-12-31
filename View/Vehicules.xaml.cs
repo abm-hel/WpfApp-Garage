@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using Projet_Garage.Classes;
 
 namespace WpfApp_Garage.View
 {
@@ -19,9 +21,19 @@ namespace WpfApp_Garage.View
     /// </summary>
     public partial class Vehicules : Window
     {
+        private ViewModel.VM_Vehicule localVehicule;
         public Vehicules()
         {
             InitializeComponent();
+            localVehicule = new ViewModel.VM_Vehicule();
+            DataContext = localVehicule;
         }
+
+        private void dataGridVehicules_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridVehicules.SelectedIndex >= 0)
+                localVehicule.VehiculeSelectionnee2UnVehicule();
+        }
+
     }
 }

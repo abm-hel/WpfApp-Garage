@@ -96,6 +96,7 @@
     <Compile Include="ViewModel\Intervention.cs" />
     <Compile Include="ViewModel\Modele.cs" />
     <Compile Include="ViewModel\Piece.cs" />
+    <Compile Include="ViewModel\Vehicule.cs" />
     <Compile Include="View\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
@@ -107,6 +108,9 @@
     </Compile>
     <Compile Include="View\Pieces.xaml.cs">
       <DependentUpon>Pieces.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Vehicules.xaml.cs">
+      <DependentUpon>Vehicules.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +139,10 @@
     <Page Include="View\Pieces.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Vehicules.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
