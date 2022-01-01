@@ -14,6 +14,7 @@
             <Button Name ="boutonPieces" Content="Pièces" Margin="5" Click="boutonPieces_Click"/>
             <Button Name ="boutonIntervention" Content="Interventions" Margin="5" Click="boutonIntervention_Click"/>
             <Button Name ="boutonVehicule" Content="Vehicule" Margin="5" Click="boutonVehicule_Click"/>
+            <Button Name ="boutonTypeEntretien" Content="Types d'entretiens" Margin="5" Click="boutonTypeEntretien_Click"/>
             <Button Name="boutonQuitter" Content="Quitter" Margin="5" Click="boutonQuitter_Click"/>
         </StackPanel>
     </Grid>
