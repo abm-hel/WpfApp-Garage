@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox AcceptsReturn="True" Grid.ColumnSpan="1" />
+        
 
         <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" >
             <Grid.RowDefinitions>
