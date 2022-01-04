@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Garage.View"
         mc:Ignorable="d"
-        Title="Types d'entretiens" Height="450" Width="800">
+        Title="Types d'entretiens" Height="600" Width="1000">
 
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Name="textBlockNom" Text="Type entretien" VerticalAlignment="Center" />
+            <TextBlock Name="textBlockNom" Text="Entretien" VerticalAlignment="Center" />
             <TextBox Name="textBoxNom"  Grid.Column="1" Margin="3"
             Text="{Binding Path=unTypeEntretien.nom, Mode=TwoWay}"/>
 
@@ -81,18 +81,18 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Name="textBlockTypeEntretien" Text="Type entretien" VerticalAlignment="Center" />
-            <ComboBox Name="comboBoxTypeEntretien"  Grid.Column="1" Margin="3"
-            Text="{Binding Path=unTypeEntretien_intervention.entretienId, Mode=TwoWay}"/>
+            <TextBlock Name="textBlockTypeEntretien" Text="Entretien" VerticalAlignment="Center" />
+            <ComboBox Name="comboBoxTypeEntretien" IsEditable="True" IsReadOnly="True" Text="Sélectionner un type d'entretien" Grid.Column="1" Margin="3"
+            SelectedValue="{Binding Path=unTypeEntretien_intervention.entretienId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpTypeEntretiens}" DisplayMemberPath="nom" SelectedValuePath="id"/>
 
             <TextBlock Name="textBlockIntervention" Text="Intervention" Grid.Row="1" VerticalAlignment="Center" />
-            <ComboBox Name="comboBoxIntervention" Grid.Row="1" Grid.Column="1" Margin="3"
-            Text="{Binding Path=unTypeEntretien_intervention.interventionId, Mode=TwoWay}"/>
+            <ComboBox Name="comboBoxIntervention" IsEditable="True" IsReadOnly="True" Text="Sélectionner une intervention" Grid.Row="1" Grid.Column="1" Margin="3"
+            SelectedValue="{Binding Path=unTypeEntretien_intervention.interventionId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpInterventions}" DisplayMemberPath="description" SelectedValuePath="id"/>
         </Grid>
 
-        <DataGrid Name="dataGridTypeEntretiens_intervention" ItemsSource="{Binding Path=bcpTypeEntretiens}" Grid.Column="1" Grid.Row="2" VerticalScrollBarVisibility="Visible"
-            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding typeEntretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridTypeEntretiens_intervention_SelectionChanged">
+        <DataGrid Name="dataGridTypeEntretiens_intervention" ItemsSource="{Binding Path=bcpTypeEntretiens_interventions}" Grid.Column="1" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche2, Mode=OneWay}"
+            SelectedItem="{Binding typeEntretienSelectionnee_intervention, Mode=TwoWay}" SelectionChanged="dataGridTypeEntretiens_intervention_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" Width="auto" />
@@ -105,22 +105,22 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
-            <Button Name="buttonAjouter2" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeAjouter}" />
-            <Button Name="buttonModifier2" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeModifier}" />
-            <Button Name="buttonSupprimer2" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeSupprimer}"/>
+            <Button Name="buttonAjouter2" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche2, Mode=OneWay}"
+           Command="{Binding commandeAjouterTypeEntretien_Intervention}" />
+            <Button Name="buttonModifier2" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche2, Mode=OneWay}"
+           Command="{Binding commandeModifierTypeEntretien_Intervention}" />
+            <Button Name="buttonSupprimer2" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche2, Mode=OneWay}"
+           Command="{Binding commandeSupprimerTypeEntretien_Intervention}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
-            <Button Name="buttonConfirmer2" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
-           Command="{Binding commandeConfirmer}" />
-            <Button Name="buttonAnnuler2" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
-           Command="{Binding commandeAnnuler}" />
+            <Button Name="buttonConfirmer2" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche2, Mode=OneWay}"
+           Command="{Binding commandeConfirmerTypeEntretien_Intervention}" />
+            <Button Name="buttonAnnuler2" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche2, Mode=OneWay}"
+           Command="{Binding commandeAnnulerTypeEntretien_Intervention}" />
         </StackPanel>
 
-        <Grid Grid.Column="2" Name="UneFiche3" IsEnabled="{Binding Path=ActiverUneFiche2, Mode=OneWay}" >
+        <Grid Grid.Column="2" Name="UneFiche3" IsEnabled="{Binding Path=ActiverUneFiche3, Mode=OneWay}" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -131,29 +131,29 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Name="textBlockTypeEntretien2" Text="Type entretien" VerticalAlignment="Center" />
-            <ComboBox Name="comboBoxTypeEntretien2"  Grid.Column="1" Margin="3"
-            Text="{Binding Path=unTypeEntretien_piece.entretienId, Mode=TwoWay}"/>
+            <TextBlock Name="textBlockTypeEntretien2" Text="Entretien" VerticalAlignment="Center" />
+            <ComboBox Name="comboBoxTypeEntretien2" IsEditable="True" IsReadOnly="True" Text="Sélectionner un type d'entretien" Grid.Column="1" Margin="3"
+            SelectedValue="{Binding Path=unTypeEntretien_piece.entretienId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpTypeEntretiens}" DisplayMemberPath="nom" SelectedValuePath="id"/>
 
-            <TextBlock Name="textBlockPiece" Text="Pièce" Grid.Row="1" VerticalAlignment="Center" />
-            <ComboBox Name="comboBoxPiece" Grid.Row="1" Grid.Column="1" Margin="3"
-            Text="{Binding Path=unTypeEntretien_piece.pieceId, Mode=TwoWay}"/>
+            <TextBlock Name="textBlocPiece" Text="Pièce" Grid.Row="1" VerticalAlignment="Center" />
+            <ComboBox Name="comboBoxPiece" IsEditable="True" IsReadOnly="True" Text="Sélectionner une pièce" Grid.Row="1" Grid.Column="1" Margin="3"
+            SelectedValue="{Binding Path=unTypeEntretien_piece.pieceId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpPieces}" DisplayMemberPath="nom" SelectedValuePath="id"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
-            <Button Name="buttonConfirmer3" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
-           Command="{Binding commandeConfirmer}" />
-            <Button Name="buttonAnnuler3" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
-           Command="{Binding commandeAnnuler}" />
+            <Button Name="buttonConfirmer3" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche3, Mode=OneWay}"
+           Command="{Binding commandeConfirmerTypeEntretien_Piece}" />
+            <Button Name="buttonAnnuler3" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche3, Mode=OneWay}"
+           Command="{Binding commandeAnnulerTypeEntretien_Piece}" />
         </StackPanel>
 
-        <DataGrid Name="dataGridTypeEntretiens_piece" ItemsSource="{Binding Path=bcpTypeEntretiens}" Grid.Column="2" Grid.Row="2" VerticalScrollBarVisibility="Visible"
-            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding typeEntretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridTypeEntretiens_piece_SelectionChanged">
+        <DataGrid Name="dataGridTypeEntretiens_piece" ItemsSource="{Binding Path=bcpTypeEntretiens_pieces}" Grid.Column="2" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche3, Mode=OneWay}"
+            SelectedItem="{Binding typeEntretienSelectionnee_piece, Mode=TwoWay}" SelectionChanged="dataGridTypeEntretiens_piece_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" Width="auto" />
-                <DataGridTextColumn Header="Pièce" Binding="{Binding Path=interventionId}" Width="auto" />
+                <DataGridTextColumn Header="Pièce" Binding="{Binding Path=pieceId}" Width="auto" />
                 <DataGridTextColumn Header="Type entretien" Binding="{Binding Path=entretienId}" Width="auto" />
                 <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="auto" />
                 <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="auto" />
@@ -162,14 +162,12 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Margin="34,3" >
-            <Button Name="buttonAjouter3" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeAjouter}" />
-            <Button Name="buttonModifier3" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeModifier}" />
-            <Button Name="buttonSupprimer3" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding commandeSupprimer}"/>
+            <Button Name="buttonAjouter3" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche3, Mode=OneWay}"
+           Command="{Binding commandeAjouterTypeEntretien_Piece}" />
+            <Button Name="buttonModifier3" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche3, Mode=OneWay}"
+           Command="{Binding commandeModifierTypeEntretien_Piece}" />
+            <Button Name="buttonSupprimer3" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche3, Mode=OneWay}"
+           Command="{Binding commandeSupprimerTypeEntretien_Piece}"/>
         </StackPanel>
     </Grid>
-
-
 </Window>

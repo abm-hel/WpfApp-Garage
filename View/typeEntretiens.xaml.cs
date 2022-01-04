@@ -37,12 +37,14 @@ namespace WpfApp_Garage.View
 
         private void dataGridTypeEntretiens_intervention_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dataGridTypeEntretiens_intervention.SelectedIndex >= 0)
+                localTypeEntretien.typeEntretienSelectionnee_intervention2UnTypeEntretien_intervention();
         }
 
         private void dataGridTypeEntretiens_piece_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dataGridTypeEntretiens_piece.SelectedIndex >= 0)
+                localTypeEntretien.typeEntretienSelectionnee_piece2UnTypeEntretien_piece();
         }
     }
 }
