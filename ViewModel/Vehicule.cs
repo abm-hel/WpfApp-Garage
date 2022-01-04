@@ -7,6 +7,7 @@ using Projet_Garage.Classes;
 using Projet_Garage.Gestion;
 using System.Configuration;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace WpfApp_Garage.ViewModel
 {
@@ -15,8 +16,8 @@ namespace WpfApp_Garage.ViewModel
         #region Données Écran
 
         private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.chaineConnexionBD"].ConnectionString;
-
         private int nAjout;
+
         private bool _ActiverUneFiche;
         public bool ActiverUneFiche
         {
@@ -58,15 +59,15 @@ namespace WpfApp_Garage.ViewModel
             set { _bcpVehicules = value; }
         }
 
-        private ObservableCollection<int> _bcpClients = new ObservableCollection<int>();
-        public ObservableCollection<int> bcpClients
+        private ObservableCollection<C_Client> _bcpClients = new ObservableCollection<C_Client>();
+        public ObservableCollection<C_Client> bcpClients
         {
             get { return _bcpClients; }
             set { _bcpClients = value; }
         }
 
-        private ObservableCollection<int> _bcpModeles = new ObservableCollection<int>();
-        public ObservableCollection<int> bcpModeles
+        private ObservableCollection<C_Modele> _bcpModeles = new ObservableCollection<C_Modele>();
+        public ObservableCollection<C_Modele> bcpModeles
         {
             get { return _bcpModeles; }
             set { _bcpModeles = value; }
@@ -108,23 +109,23 @@ namespace WpfApp_Garage.ViewModel
             return rep;
         }
 
-        private ObservableCollection<int> ChargerClients(string chaineConnexion)
+        private ObservableCollection<C_Client> ChargerClients(string chaineConnexion)
         {
             //ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
             List<C_Client> lTmp = new G_Client(chaineConnexion).Lire("id");
-            ObservableCollection<int> c  = new ObservableCollection<int>();
+            ObservableCollection<C_Client> c  = new ObservableCollection<C_Client>();
             foreach (C_Client Tmp in lTmp)
-                c.Add(Tmp.id);
+                c.Add(Tmp);
             return c;
         }
 
-        private ObservableCollection<int> ChargerModeles(string chaineConnexion)
+        private ObservableCollection<C_Modele> ChargerModeles(string chaineConnexion)
         {
             //ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
             List<C_Modele> lTmp = new G_Modele(chaineConnexion).Lire("id");
-            ObservableCollection<int> c = new ObservableCollection<int>();
+            ObservableCollection<C_Modele> c = new ObservableCollection<C_Modele>();
             foreach (C_Modele Tmp in lTmp)
-                c.Add(Tmp.id);
+                c.Add(Tmp);
             return c;
         }
 
@@ -132,14 +133,15 @@ namespace WpfApp_Garage.ViewModel
         {
             if (nAjout == -1)
             {
+                
                 unVehicule.id = new G_Vehicule(chaineConnexion).Ajouter(unVehicule.modeleId, unVehicule.clientId, unVehicule.immatriculation, unVehicule.datePremiereImmatriculation, unVehicule.couleur,unVehicule.kilometrage);
-                bcpVehicules.Add(new C_Vehicule(unVehicule.modeleId, unVehicule.clientId, unVehicule.immatriculation, unVehicule.datePremiereImmatriculation, unVehicule.couleur , unVehicule.kilometrage));
+                bcpVehicules.Add(new C_Vehicule(unVehicule.id, unVehicule.modeleId, unVehicule.clientId, unVehicule.immatriculation, unVehicule.datePremiereImmatriculation, unVehicule.couleur , unVehicule.kilometrage));
             }
 
             else
             {
                 new G_Vehicule(chaineConnexion).Modifier(unVehicule.id,unVehicule.modeleId, unVehicule.clientId, unVehicule.immatriculation, unVehicule.datePremiereImmatriculation, unVehicule.couleur, unVehicule.kilometrage);
-                bcpVehicules[nAjout] = new C_Vehicule(unVehicule.modeleId, unVehicule.clientId, unVehicule.immatriculation, unVehicule.datePremiereImmatriculation, unVehicule.couleur, unVehicule.kilometrage);
+                bcpVehicules[nAjout] = new C_Vehicule(unVehicule.id, unVehicule.modeleId, unVehicule.clientId, unVehicule.immatriculation, unVehicule.datePremiereImmatriculation, unVehicule.couleur, unVehicule.kilometrage);
             }
             ActiverUneFiche = false;
         }

@@ -153,7 +153,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" Width="auto" />
-                <DataGridTextColumn Header="Intervention" Binding="{Binding Path=interventionId}" Width="auto" />
+                <DataGridTextColumn Header="Pièce" Binding="{Binding Path=interventionId}" Width="auto" />
                 <DataGridTextColumn Header="Type entretien" Binding="{Binding Path=entretienId}" Width="auto" />
                 <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="auto" />
                 <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="auto" />
@@ -169,9 +169,6 @@
             <Button Name="buttonSupprimer3" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding commandeSupprimer}"/>
         </StackPanel>
-
-
-
     </Grid>
 
 

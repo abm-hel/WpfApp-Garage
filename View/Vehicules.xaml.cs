@@ -34,6 +34,5 @@ namespace WpfApp_Garage.View
             if (dataGridVehicules.SelectedIndex >= 0)
                 localVehicule.VehiculeSelectionnee2UnVehicule();
         }
-
     }
 }
