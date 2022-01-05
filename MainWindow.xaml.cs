@@ -67,5 +67,11 @@ namespace WpfApp_Garage
             View.typeEntretiens fenetre = new View.typeEntretiens();
             fenetre.ShowDialog();
         }
+
+        private void boutonEntretien_Click(object sender, RoutedEventArgs e)
+        {
+            View.Entretiens fenetre = new View.Entretiens();
+            fenetre.ShowDialog();
+        }
     }
 }

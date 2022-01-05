@@ -20,6 +20,7 @@
                 <Button Name ="boutonIntervention" Content="Interventions" Padding="5" Margin="5" Click="boutonIntervention_Click"/>
                 <Button Name ="boutonVehicule" Content="Véhicules" Padding="5" Margin="5" Click="boutonVehicule_Click"/>
                 <Button Name ="boutonTypeEntretien" Content="Types d'entretien" Padding="5" Margin="5" Click="boutonTypeEntretien_Click"/>
+                <Button Name ="boutonEntretien" Content="Entretiens" Padding="5" Margin="5" Click="boutonEntretien_Click"/>
                 <Button Name="boutonQuitter" Content="Quitter" Padding="3" Margin="5" Click="boutonQuitter_Click"/>
             </StackPanel>
         </Grid>
