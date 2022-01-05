@@ -23,5 +23,10 @@ namespace WpfApp_Garage.View
         {
             InitializeComponent();
         }
+
+        private void dataGridEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
