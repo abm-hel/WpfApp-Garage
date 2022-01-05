@@ -171,6 +171,7 @@ namespace WpfApp_Garage.ViewModel
                 unVehicule.datePremiereImmatriculation =Tmp.datePremiereImmatriculation;
                 unVehicule.couleur = Tmp.couleur;
                 unVehicule.kilometrage = Tmp.kilometrage;
+                nAjout = bcpVehicules.IndexOf(vehiculeSelectionnee);
                 ActiverUneFiche = true;
             }
         }
