@@ -163,6 +163,7 @@ namespace WpfApp_Garage.ViewModel
             {
                 C_Vehicule Tmp = new G_Vehicule(chaineConnexion).Lire_ID(unVehicule.id);
                 unVehicule = new VM_UnVehicule();
+
                 unVehicule.id = Tmp.id;
                 unVehicule.modeleId = Tmp.modeleId;
                 unVehicule.clientId = Tmp.clientId;

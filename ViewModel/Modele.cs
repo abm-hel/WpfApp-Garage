@@ -95,7 +95,7 @@ namespace WpfApp_Garage.ViewModel
             if (nAjout == -1)
             {
                 unModele.id = new G_Modele(chaineConnexion).Ajouter(unModele.modele, unModele.motorisation, unModele.carburant, unModele.cylindree, unModele.puissance, unModele.consommation, unModele.poids);
-                bcpModeles.Add(new C_Modele(unModele.modele, unModele.motorisation, unModele.carburant, unModele.cylindree, unModele.puissance, unModele.consommation, unModele.poids));
+                bcpModeles.Add(new C_Modele(unModele.id,unModele.modele, unModele.motorisation, unModele.carburant, unModele.cylindree, unModele.puissance, unModele.consommation, unModele.poids));
             }
             else
             {

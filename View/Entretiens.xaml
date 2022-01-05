@@ -38,14 +38,17 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <TextBlock Name="textBlockId" Text="Id"  VerticalAlignment="Center" />
+            <TextBox Name="textBoxId"  Grid.Column="1" Margin="3"
+            Text="{Binding Path=unEntretien.id, Mode=TwoWay}"  />
 
             <TextBlock Name="textBlockModeleId" Text="Modèle" Grid.Row="1" VerticalAlignment="Center" />
             <ComboBox  IsEditable="True" IsReadOnly="True" Text="Sélectionner un véhicule" Name="comboBoxModeleId" Grid.Row="1" Grid.Column="1" Margin="3"
             SelectedValue="{Binding Path=unEntretien.vehiculeId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpVehicules}"  DisplayMemberPath="immatriculation" SelectedValuePath="id" />
 
 
-            <TextBlock Name="textBlockDatePassage" Text="Date passage" Grid.Row="4" VerticalAlignment="Center" />
-            <DatePicker Name="datePickerDatePassage" Grid.Row="4" Grid.Column="1" Margin="3" 
+            <TextBlock Name="textBlockDatePassage" Text="Date passage" Grid.Row="2" VerticalAlignment="Center" />
+            <DatePicker Name="datePickerDatePassage" Grid.Row="2" Grid.Column="1" Margin="3" 
                SelectedDate="{Binding Path=unEntretien.datePassage, Mode=TwoWay, StringFormat='dd/mm/yyyy'}"/>
         </Grid>
 
@@ -58,7 +61,7 @@
 
         <DataGrid Name="dataGridEntretiens" ItemsSource="{Binding Path=bcpEntretiens}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding entretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretiens_SelectionChanged">
+            SelectedItem="{Binding entretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretiens_SelectionChanged" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="id" Binding="{Binding Path=id}" />

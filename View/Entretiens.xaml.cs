@@ -29,7 +29,7 @@ namespace WpfApp_Garage.View
 
         private void dataGridEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(dataGridEntretiens.SelectedIndex <=0)
+            if (dataGridEntretiens.SelectedIndex >= 0)
             {
                 localEntretien.EntretienSelectionnee2UnEntretien();
             }

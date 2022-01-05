@@ -84,6 +84,7 @@ namespace WpfApp_Garage.ViewModel
             
 
             ActiverUneFiche = false;
+
             commandeConfirmer = new BaseCommande(Confirmer);
             commandeAnnuler = new BaseCommande(Annuler);
             commandeAjouter = new BaseCommande(Ajouter);
@@ -143,11 +144,13 @@ namespace WpfApp_Garage.ViewModel
         {
             if (entretienSelectionnee != null)
             {
-                C_Entretien Tmp = new G_Entretien(chaineConnexion).Lire_ID(unEntretien.id);
+                C_Entretien Tmp = new G_Entretien(chaineConnexion).Lire_ID(entretienSelectionnee.id);
                 unEntretien = new VM_UnEntretien();
+
                 unEntretien.id = Tmp.id;
                 unEntretien.vehiculeId = Tmp.vehiculeId;
                 unEntretien.datePassage = Tmp.datePassage;
+                nAjout = bcpEntretiens.IndexOf(entretienSelectionnee);
                 ActiverUneFiche = true;
             }
         }
