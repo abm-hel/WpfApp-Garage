@@ -19,14 +19,20 @@ namespace WpfApp_Garage.View
     /// </summary>
     public partial class Entretiens : Window
     {
+        private ViewModel.VM_Entretien localEntretien;
         public Entretiens()
         {
             InitializeComponent();
+            localEntretien = new ViewModel.VM_Entretien();
+            DataContext = localEntretien;
         }
 
         private void dataGridEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if(dataGridEntretiens.SelectedIndex <=0)
+            {
+                localEntretien.EntretienSelectionnee2UnEntretien();
+            }
         }
     }
 }

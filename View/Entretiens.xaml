@@ -40,8 +40,8 @@
 
 
             <TextBlock Name="textBlockModeleId" Text="Modèle" Grid.Row="1" VerticalAlignment="Center" />
-            <ComboBox  IsEditable="True" IsReadOnly="True" Text="Sélectionner un modèle" Name="comboBoxModeleId" Grid.Row="1" Grid.Column="1" Margin="3"
-            SelectedValue="{Binding Path=unEntretien.vehiculeId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpEntretiens}"  DisplayMemberPath="modele" SelectedValuePath="id" />
+            <ComboBox  IsEditable="True" IsReadOnly="True" Text="Sélectionner un véhicule" Name="comboBoxModeleId" Grid.Row="1" Grid.Column="1" Margin="3"
+            SelectedValue="{Binding Path=unEntretien.vehiculeId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpVehicules}"  DisplayMemberPath="immatriculation" SelectedValuePath="id" />
 
 
             <TextBlock Name="textBlockDatePassage" Text="Date passage" Grid.Row="4" VerticalAlignment="Center" />
@@ -62,8 +62,8 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="id" Binding="{Binding Path=id}" />
-                <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=modeleId}" Width="*" />
-                <DataGridTextColumn Header="Date de passage" Binding="{Binding Path=clientId}" Width="*" />
+                <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="*" />
+                <DataGridTextColumn Header="Date de passage" Binding="{Binding Path=datePassage, StringFormat='dd/MM/yyyy'}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
