@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Garage"
         mc:Ignorable="d"
-        Title="Garage - Tableau de bord" Height="500" Width="700">
+        Title="Garage - Tableau de bord" Height="500" Width="800">
     
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
@@ -30,14 +30,14 @@
                 <TabItem Header="Ajouter Intervention">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0">
@@ -73,6 +73,10 @@
                 <TabItem Header="Ajouter Pièce">
                 </TabItem>
                 <TabItem Header="Ajouter Entretien complet">
+                </TabItem>
+                <TabItem Header="Pièces vendues">
+                </TabItem>
+                <TabItem Header="Intervetions effectuées">
                 </TabItem>
             </TabControl>
         </Grid>
