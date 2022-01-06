@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:WpfApp_Garage"
         mc:Ignorable="d"
         Title="Garage - Tableau de bord" Height="500" Width="800">
-    
+
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid Grid.Column="0" Background="CornflowerBlue">
             <StackPanel VerticalAlignment="Center" >
                 <Button Name="boutonClients" Content="Clients" Padding="5" Margin="5" Click="boutonClients_Click"/>
@@ -48,9 +48,9 @@
                                         <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Intervetion" Binding="{Binding Path=description}" Width="Auto" />
                                         <DataGridTextColumn Header="Durée d'intervenion (h)" Binding="{Binding Path=nombreHeures}" Width="Auto" />
-                                        <DataGridTextColumn Header="Prix / h" Binding="{Binding Path=TType}" Width="Auto" />
-                                        <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=TPrix}" Width="Auto" />
-                                        <DataGridTextColumn Header="Prix TTC" Binding="{Binding Path=TDate}" Width="Auto" />
+                                        <DataGridTextColumn Header="Prix / h" Binding="{Binding Path=prixHeure}" Width="Auto" />
+                                        <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=tva}" Width="Auto" />
+                                        <DataGridTextColumn Header="Prix TTC" Binding="{Binding Path=prixTotal}" Width="Auto" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -63,15 +63,78 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="Auto" />
+                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=datePassage}" Width="Auto" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+                                    <Button Name="buttonAjouterIntervention" Content="Ajouter une intervention" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterIntervention}" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Ajouter Pièce" Height="21" Margin="-0.4,0,0,-0.2" VerticalAlignment="Bottom">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16*"/>
+                                <ColumnDefinition Width="135*"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="68*"/>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="213*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0.4,0">
+                                <DataGrid Name="dataGridPieces" ItemsSource="{Binding Path=BcpPieces}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                                    SelectedItem="{Binding PieceSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                        <DataGridTextColumn Header="Pièce" Binding="{Binding Path=nom}" Width="Auto" />
+                                        <DataGridTextColumn Header="Fabricant" Binding="{Binding Path=fabricant}" Width="Auto" />
+                                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="Auto" />
+                                        <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=tva}" Width="Auto" />
+                                        <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="Auto" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+
+                            <Grid Grid.Column="6" Margin="0,0,0.4,0">
+                                <DataGrid Name="dataGridEntretiens2" ItemsSource="{Binding Path=BcpEntretiens2}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                                    SelectedItem="{Binding EntretienSelectionnee2, Mode=TwoWay}" SelectionChanged="dataGridEntretiens2_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                        <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="Auto" />
                                         <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=nombreHeures}" Width="Auto" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
                         </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+                                    <Button Name="buttonAjouterPiece" Content="Ajouter une pièce" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterPiece}" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Ajouter Pièce">
-                </TabItem>
+                
                 <TabItem Header="Ajouter Entretien complet">
                 </TabItem>
                 <TabItem Header="Pièces vendues">
@@ -80,7 +143,7 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        
+
     </Grid>
-    
+
 </Window>
