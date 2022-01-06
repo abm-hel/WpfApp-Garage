@@ -25,10 +25,16 @@
                 <Button Name="boutonQuitter" Content="Quitter" Padding="3" Margin="5" Click="boutonQuitter_Click"/>
             </StackPanel>
         </Grid>
+        
         <Grid Grid.Column="1">
             <TabControl>
                 <TabItem Header="Ajouter Intervention">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="auto"/>
@@ -54,8 +60,7 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
-
-
+                            
                             <Grid Grid.Column="1">
                                 <DataGrid Name="dataGridEntretiens" ItemsSource="{Binding Path=BcpEntretiens}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
@@ -70,11 +75,9 @@
                         </Grid>
 
                         <Grid Grid.Row="1">
-                            <Grid Grid.Row="1">
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
-                                    <Button Name="buttonAjouterIntervention" Content="Ajouter une intervention" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterIntervention}" />
-                                </StackPanel>
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+                                <Button Name="buttonAjouterIntervention" Content="Ajouter une intervention" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterIntervention}" />
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -88,39 +91,33 @@
 
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="16*"/>
-                                <ColumnDefinition Width="135*"/>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="68*"/>
-                                <ColumnDefinition Width="60*"/>
-                                <ColumnDefinition Width="213*"/>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0.4,0">
+                            <Grid Grid.Column="0">
                                 <DataGrid Name="dataGridPieces" ItemsSource="{Binding Path=BcpPieces}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
                                     SelectedItem="{Binding PieceSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
-                                        <DataGridTextColumn Header="Pièce" Binding="{Binding Path=nom}" Width="Auto" />
-                                        <DataGridTextColumn Header="Fabricant" Binding="{Binding Path=fabricant}" Width="Auto" />
-                                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="Auto" />
-                                        <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=tva}" Width="Auto" />
-                                        <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="Auto" />
+                                        <DataGridTextColumn Header="Pièce" Binding="{Binding Path=nom}" Width="*" />
+                                        <DataGridTextColumn Header="Fabricant" Binding="{Binding Path=fabricant}" Width="*" />
+                                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="*" />
+                                        <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=tva}" Width="*" />
+                                        <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="*" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
 
-
-                            <Grid Grid.Column="6" Margin="0,0,0.4,0">
+                            <Grid Grid.Column="1">
                                 <DataGrid Name="dataGridEntretiens2" ItemsSource="{Binding Path=BcpEntretiens2}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
                                     SelectedItem="{Binding EntretienSelectionnee2, Mode=TwoWay}" SelectionChanged="dataGridEntretiens2_SelectionChanged">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
-                                        <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="Auto" />
-                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=nombreHeures}" Width="Auto" />
+                                        <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="auto" />
+                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=nombreHeures}" Width="auto" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -132,14 +129,74 @@
                                 </StackPanel>
                             </Grid>
                         </Grid>
+
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Ajouter Entretien complet">
+
+                </TabItem>
+
+
+                <TabItem Header="Pièces vendues">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <DataGrid Name="dataGridEntretien_Pieces" ItemsSource="{Binding Path=BcpEntretien_Pieces}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                                    SelectedItem="{Binding Entretien_PiecesSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                    <DataGridTextColumn Header="Pièce" Binding="{Binding Path=pieceId}" Width="*" />
+                                    <DataGridTextColumn Header="Entretien" Binding="{Binding Path=entretienId}" Width="*" />
+                                    <DataGridTextColumn Header="Quantité" Binding="{Binding Path=quantite}" Width="*" />
+                                    <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="*" />
+                                    <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=tva}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+                                <Button Name="buttonSupprimerPiece" Content="Supprimer" Padding="15,3" Width="auto"  Command="{Binding commandeSupprimerPiece}" />
+                            </StackPanel>
+                        </Grid>
                     </Grid>
                 </TabItem>
                 
-                <TabItem Header="Ajouter Entretien complet">
-                </TabItem>
-                <TabItem Header="Pièces vendues">
-                </TabItem>
                 <TabItem Header="Intervetions effectuées">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <DataGrid Name="dataGridEntretien_Interventions" ItemsSource="{Binding Path=BcpEntretien_Interventions}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                                    SelectedItem="{Binding Entretien_InterventionsSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretien_Interventions_SelectionChanged" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                    <DataGridTextColumn Header="Intervention" Binding="{Binding Path=interventionId}" Width="*" />
+                                    <DataGridTextColumn Header="Entretien" Binding="{Binding Path=entretienId}" Width="*" />
+                                    <DataGridTextColumn Header="Prix / h" Binding="{Binding Path=prixHeure}" Width="*" />
+                                    <DataGridTextColumn Header="Prix" Binding="{Binding Path=prix}" Width="*" />
+                                    <DataGridTextColumn Header="Taux TVA" Binding="{Binding Path=tva}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        
+                        <Grid Grid.Row="1">
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+                                <Button Name="buttonSupprimerIntervention" Content="Supprimer" Padding="15,3" Width="auto"  Command="{Binding commandeSupprimerIntervention}" />
+                            </StackPanel>
+                        </Grid>
+                        
+                    </Grid>
                 </TabItem>
             </TabControl>
         </Grid>

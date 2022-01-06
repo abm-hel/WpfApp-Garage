@@ -88,5 +88,10 @@ namespace WpfApp_Garage
         {
 
         }
+
+        private void dataGridEntretien_Interventions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
