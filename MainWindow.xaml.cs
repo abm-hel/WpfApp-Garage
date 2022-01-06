@@ -73,5 +73,15 @@ namespace WpfApp_Garage
             View.Entretiens fenetre = new View.Entretiens();
             fenetre.ShowDialog();
         }
+
+        private void dataGridInterventions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dataGridEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
