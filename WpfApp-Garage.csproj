@@ -97,6 +97,7 @@
     <Compile Include="ViewModel\Intervention.cs" />
     <Compile Include="ViewModel\Modele.cs" />
     <Compile Include="ViewModel\Piece.cs" />
+    <Compile Include="ViewModel\TableauBord.cs" />
     <Compile Include="ViewModel\TypeEntretien.cs" />
     <Compile Include="ViewModel\Vehicule.cs" />
     <Compile Include="View\Clients.xaml.cs">

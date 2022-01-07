@@ -20,9 +20,12 @@ namespace WpfApp_Garage
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel.VM_TableauBord localTableauBord;
         public MainWindow()
         {
             InitializeComponent();
+            localTableauBord = new ViewModel.VM_TableauBord();
+            DataContext = localTableauBord;
         }
 
      

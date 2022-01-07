@@ -47,11 +47,11 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0">
-                                <DataGrid Name="dataGridInterventions" ItemsSource="{Binding Path=BcpIntervetions}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                <DataGrid Name="dataGridInterventions" ItemsSource="{Binding Path=bcpInterventions}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
                                     SelectedItem="{Binding InterventionSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Intervetion" Binding="{Binding Path=description}" Width="Auto" />
                                         <DataGridTextColumn Header="Durée d'intervenion (h)" Binding="{Binding Path=nombreHeures}" Width="Auto" />
                                         <DataGridTextColumn Header="Prix / h" Binding="{Binding Path=prixHeure}" Width="Auto" />
@@ -62,13 +62,13 @@
                             </Grid>
                             
                             <Grid Grid.Column="1">
-                                <DataGrid Name="dataGridEntretiens" ItemsSource="{Binding Path=BcpEntretiens}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                <DataGrid Name="dataGridEntretiens" ItemsSource="{Binding Path=bcpEntretiens}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
                                     SelectedItem="{Binding EntretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretiens_SelectionChanged" >
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="Auto" />
-                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=datePassage}" Width="Auto" />
+                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=datePassage,  StringFormat='dd/MM/yyyy'}" Width="Auto" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -82,7 +82,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Ajouter Pièce" Height="21" Margin="-0.4,0,0,-0.2" VerticalAlignment="Bottom">
+                <TabItem Header="Ajouter Pièce">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -96,7 +96,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0">
-                                <DataGrid Name="dataGridPieces" ItemsSource="{Binding Path=BcpPieces}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                <DataGrid Name="dataGridPieces" ItemsSource="{Binding Path=bcpPieces}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
                                     SelectedItem="{Binding PieceSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
                                     <DataGrid.Columns>
@@ -111,23 +111,21 @@
                             </Grid>
 
                             <Grid Grid.Column="1">
-                                <DataGrid Name="dataGridEntretiens2" ItemsSource="{Binding Path=BcpEntretiens2}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                <DataGrid Name="dataGridEntretiens2" ItemsSource="{Binding Path=bcpEntretiens}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
                                     SelectedItem="{Binding EntretienSelectionnee2, Mode=TwoWay}" SelectionChanged="dataGridEntretiens2_SelectionChanged">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
+                                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="auto" />
-                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=nombreHeures}" Width="auto" />
+                                        <DataGridTextColumn Header="Date de Passage" Binding="{Binding Path=datePassage, StringFormat='dd/MM/yyyy'}" Width="auto" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
-                            <Grid Grid.Row="1">
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
-                                    <Button Name="buttonAjouterPiece" Content="Ajouter une pièce" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterPiece}" />
-                                </StackPanel>
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
+                                <Button Name="buttonAjouterPiece" Content="Ajouter une pièce" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterPiece}" />
+                            </StackPanel>
                         </Grid>
 
                     </Grid>
