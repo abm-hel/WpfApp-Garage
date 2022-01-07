@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Garage.View"
         mc:Ignorable="d"
-        Title="Clients" Height="450" Width="800">
+        Title="Clients" Height="450" Width="600">
     
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -19,10 +18,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <TextBox AcceptsReturn="True" Grid.ColumnSpan="2" />
+        
         <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -36,32 +34,29 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
-            <TextBlock Name="textBlockId" Text="Identifiant" VerticalAlignment="Center" />
-            <TextBox Name="textBoxId" Grid.Column="1" Margin="3"
-            Text="{Binding Path=unClient.id, Mode=TwoWay}" />
-
-            <TextBlock Name="textBlockNom" Text="Nom" Grid.Row="1" VerticalAlignment="Center" />
-            <TextBox Name="textBoxNom" Grid.Row="1" Grid.Column="1" Margin="3"
+            <TextBlock Name="textBlockNom" Text="Nom" VerticalAlignment="Center" />
+            <TextBox Name="textBoxNom"  Grid.Column="1" Margin="3"
             Text="{Binding Path=unClient.nom, Mode=TwoWay}" />
 
-            <TextBlock Name="textBlockPrenom" Text="Prénom" Grid.Row="2" VerticalAlignment="Center" />
-            <TextBox Name="textBoxPrenom" Grid.Row="2" Grid.Column="1" Margin="3"
+            <TextBlock Name="textBlockPrenom" Text="Prénom" Grid.Row="1" VerticalAlignment="Center" />
+            <TextBox Name="textBoxPrenom" Grid.Row="1" Grid.Column="1" Margin="3"
             Text="{Binding Path=unClient.prenom, Mode=TwoWay}" />
 
-            <TextBlock Name="textBlockDateNaissance" Text="Date de naissance" Grid.Row="3" VerticalAlignment="Center" />
-            <DatePicker Name="datePickeDateNaissance" Grid.Row="3" Grid.Column="1" Margin="3" 
+            <TextBlock Name="textBlockDateNaissance" Text="Date de naissance" Grid.Row="2" VerticalAlignment="Center" />
+            <DatePicker Name="datePickeDateNaissance" Grid.Row="2" Grid.Column="1" Margin="3" 
                SelectedDate="{Binding Path=unClient.dateNaissance, Mode=TwoWay, StringFormat='dd/mm/yyyy'}" />
 
-            <TextBlock Name="textBlockAdresse" Text="Adresse" Grid.Row="4" VerticalAlignment="Center" />
-            <TextBox Name="textBoxAdresse" Grid.Row="4" Grid.Column="1" Margin="3"
+            
+            <TextBlock Name="textBlockAdresse" Text="Adresse" Grid.Row="3" VerticalAlignment="Center" />
+            <TextBox Name="textBoxAdresse" Grid.Row="3" Grid.Column="1" Margin="3"
             Text="{Binding Path=unClient.adresse, Mode=TwoWay}" />
 
-            <TextBlock Name="textBlockNumeroTelephone" Text="Télephone" Grid.Row="5" VerticalAlignment="Center" />
-            <TextBox Name="textBoxNumeroTelephone" Grid.Row="5" Grid.Column="1" Margin="3"
+            <TextBlock Name="textBlockNumeroTelephone" Text="Télephone" Grid.Row="4" VerticalAlignment="Center" />
+            <TextBox Name="textBoxNumeroTelephone" Grid.Row="4" Grid.Column="1" Margin="3"
             Text="{Binding Path=unClient.numeroTelephone, Mode=TwoWay}"  />
 
-            <TextBlock Name="textBlockAdresseEmail" Text="Email" Grid.Row="6" VerticalAlignment="Center" />
-            <TextBox Name="textBoxAdresseEmail" Grid.Row="6" Grid.Column="1" Margin="3"
+            <TextBlock Name="textBlockAdresseEmail" Text="Email" Grid.Row="5" VerticalAlignment="Center" />
+            <TextBox Name="textBoxAdresseEmail" Grid.Row="5" Grid.Column="1" Margin="3"
             Text="{Binding Path=unClient.adresseEmail, Mode=TwoWay}" />
 
         </Grid>
@@ -81,7 +76,7 @@
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
                 <DataGridTextColumn Header="Nom" Binding="{Binding Path=nom}" Width="*" />
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Path=prenom}" Width="*" />
-                <DataGridTextColumn Header="Date de naissance" Binding="{Binding Path=dateNaissance, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
+                <DataGridTextColumn Header="Date de naissance" Binding="{Binding Path=dateNaissance, StringFormat='dd/MM/yyyy'}" Width="*"/>
                 <DataGridTextColumn Header="Adresse" Binding="{Binding Path=adresse}" />
                 <DataGridTextColumn Header="Télephone" Binding="{Binding Path=numeroTelephone}" Width="*" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Path=adresseEmail}" Width="*" />
@@ -103,6 +98,6 @@
             
         </StackPanel>
         
-        <RichTextBox Name="richTextBoxDoc" Grid.Column="1" Grid.RowSpan="4" />
+        
     </Grid>
 </Window>

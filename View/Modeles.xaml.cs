@@ -37,7 +37,7 @@ namespace WpfApp_Garage.View
 
             foreach (C_Modele cp in localModele.bcpModeles)
             {
-                Paragraph pl = new Paragraph(new Run(cp.modele + " (" + cp.motorisation + " )"));
+                Paragraph pl = new Paragraph(new Run(cp.modele + " (" + cp.motorisation + ")"));
                 l.ListItems.Add(new ListItem(pl));
             }
             fd.Blocks.Add(l);

@@ -27,24 +27,6 @@ namespace WpfApp_Garage.View
             InitializeComponent();
             localPiece = new ViewModel.VM_Piece();
             DataContext = localPiece;
-            FlowDocument fd = new FlowDocument();
-            Paragraph p = new Paragraph();
-            p.Inlines.Add(new Bold(new Run("Titre de document")));
-            p.Inlines.Add(new LineBreak());
-            p.Inlines.Add(new Run("Liste des pièces encodées"));
-            fd.Blocks.Add(p);
-            List l = new List();
-            foreach (C_Piece cp in localPiece.bcpPieces)
-            {
-                Paragraph pl = new Paragraph(new Run(cp.nom + " (" + cp.quantite
-                  + " pièce(s) restante(s) )"));
-                l.ListItems.Add(new ListItem(pl));
-            }
-            fd.Blocks.Add(l);
-            richTextBoxDoc.Document = fd;
-            FileStream fs = new FileStream(@"pieces.rtf", FileMode.Create);
-            TextRange tr = new TextRange(richTextBoxDoc.Document.ContentStart, richTextBoxDoc.Document.ContentEnd);
-            tr.Save(fs, System.Windows.DataFormats.Rtf);
         }
 
         private void dataGridPieces_SelectionChanged(object sender, SelectionChangedEventArgs e)

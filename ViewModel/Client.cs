@@ -84,7 +84,6 @@ namespace WpfApp_Garage.ViewModel
 
         private ObservableCollection<C_Client> ChargerClients(string chaineConnexion)
         {
-            unClient.dateNaissance = DateTime.Today;
             ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
             List<C_Client> lTmp = new G_Client (chaineConnexion).Lire("id");
             foreach (C_Client Tmp in lTmp)
@@ -97,7 +96,7 @@ namespace WpfApp_Garage.ViewModel
             if (nAjout == -1)
             {
                 unClient.id = new G_Client(chaineConnexion).Ajouter(unClient.nom, unClient.prenom, (DateTime?)unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail);
-                bcpClients.Add(new C_Client(unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail));
+                bcpClients.Add(new C_Client(unClient.id,unClient.nom, unClient.prenom, unClient.dateNaissance, unClient.adresse, unClient.numeroTelephone, unClient.adresseEmail));
             }
             else
             {
@@ -116,9 +115,7 @@ namespace WpfApp_Garage.ViewModel
         {
             unClient = new VM_UnClient();
             nAjout = -1;
-            ActiverUneFiche = true;
-            unClient.dateNaissance = DateTime.Today;
-
+            ActiverUneFiche = true;     
         }
 
         public void Modifier()
@@ -130,8 +127,7 @@ namespace WpfApp_Garage.ViewModel
                 unClient.id = Tmp.id;
                 unClient.prenom = Tmp.prenom;
                 unClient.nom = Tmp.nom;
-                
-                unClient.dateNaissance = Convert.ToDateTime(Tmp.dateNaissance);
+                unClient.dateNaissance = Tmp.dateNaissance;
                 unClient.adresse = Tmp.adresse;
                 unClient.numeroTelephone = Tmp.numeroTelephone;
                 unClient.adresseEmail = Tmp.adresseEmail;
@@ -148,20 +144,12 @@ namespace WpfApp_Garage.ViewModel
             }
         }
 
-       /* public void EssaiSelMult(object lListe)
-        {
-            System.Collections.IList lTmp = (System.Collections.IList)lListe;
-            foreach (C_Client p in lTmp)
-            { string s = p.nom; }
-            int nTmp = lTmp.Count;
-        }*/
-
         public void ClientSelectionnee2UnClient()
         {
             unClient.id = clientSelectionnee.id;
             unClient.nom = clientSelectionnee.nom;
             unClient.prenom = clientSelectionnee.prenom;
-            unClient.dateNaissance = Convert.ToDateTime(clientSelectionnee.dateNaissance);
+            unClient.dateNaissance = clientSelectionnee.dateNaissance;
             unClient.adresse = clientSelectionnee.adresse;
             unClient.numeroTelephone = clientSelectionnee.numeroTelephone;
             unClient.adresseEmail = clientSelectionnee.adresseEmail;
@@ -170,8 +158,12 @@ namespace WpfApp_Garage.ViewModel
         public class VM_UnClient : BasePropriete
         {
             private int _id;
-            private string _nom, _prenom, _adresse, _numeroTelephone, _adresseEmail;
-            private DateTime _dateNaissance;
+            private string _nom;
+            private string _prenom;
+            private DateTime? _dateNaissance;
+            private string _adresse;
+            private string _numeroTelephone;
+            private string _adresseEmail;
             public int id
             {
                 get { return _id; }
@@ -187,10 +179,10 @@ namespace WpfApp_Garage.ViewModel
                 get { return _nom; }
                 set { AssignerChamp<string>(ref _nom, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
-            public DateTime dateNaissance
+            public DateTime? dateNaissance
             {
                 get { return _dateNaissance; }
-                set { AssignerChamp<DateTime>(ref _dateNaissance, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<DateTime?>(ref _dateNaissance, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
             public string adresse

@@ -97,7 +97,7 @@ namespace WpfApp_Garage.ViewModel
             if (nAjout == -1)
             {
                 unePiece.id = new G_Piece(chaineConnexion).Ajouter(unePiece.nom, unePiece.fabricant, unePiece.prix, unePiece.tva, unePiece.quantite);
-                bcpPieces.Add(new C_Piece(unePiece.nom, unePiece.fabricant, unePiece.prix, unePiece.tva, unePiece.quantite));
+                bcpPieces.Add(new C_Piece(unePiece.id, unePiece.nom, unePiece.fabricant, unePiece.prix, unePiece.tva, unePiece.quantite));
             }
             else
             {
@@ -128,9 +128,10 @@ namespace WpfApp_Garage.ViewModel
                 unePiece.id = Tmp.id;
                 unePiece.nom = Tmp.nom;
                 unePiece.fabricant = Tmp.fabricant;
-                unePiece.prix = (double)Tmp.prix;
-                unePiece.tva = (double)Tmp.tva;
-                unePiece.quantite = (int)Tmp.quantite;
+                unePiece.prix = Tmp.prix;
+                unePiece.tva = Tmp.tva;
+                unePiece.quantite = Tmp.quantite;
+                nAjout = bcpPieces.IndexOf(pieceSelectionnee);
                 ActiverUneFiche = true;
             }
         }
@@ -148,17 +149,20 @@ namespace WpfApp_Garage.ViewModel
             unePiece.id = pieceSelectionnee.id;
             unePiece.nom = pieceSelectionnee.nom;
             unePiece.fabricant = pieceSelectionnee.fabricant;
-            unePiece.prix = (double)pieceSelectionnee.prix;
-            unePiece.tva = (double)pieceSelectionnee.tva;
-            unePiece.quantite = (int)pieceSelectionnee.quantite;
+            unePiece.prix = pieceSelectionnee.prix;
+            unePiece.tva = pieceSelectionnee.tva;
+            unePiece.quantite = pieceSelectionnee.quantite;
         }
 
 
         public class VM_UnePiece : BasePropriete
         {
-            private int _id, _quantite;
-            private string _nom, _fabricant;
-            private double _tva, _prix;
+            private int _id;
+            private string _nom;
+            private string _fabricant;
+            private double? _prix;
+            private double? _tva;
+            private int? _quantite;
 
             public int id
             {
@@ -177,22 +181,22 @@ namespace WpfApp_Garage.ViewModel
                 set { AssignerChamp<string>(ref _fabricant, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public int quantite
+            public int? quantite
             {
                 get { return _quantite; }
-                set { AssignerChamp<int>(ref _quantite, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<int?>(ref _quantite, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public double prix
+            public double? prix
             {
                 get { return _prix; }
-                set { AssignerChamp<double>(ref _prix, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<double?>(ref _prix, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public double tva
+            public double? tva
             {
                 get { return _tva; }
-                set { AssignerChamp<double>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<double?>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
         }
     }

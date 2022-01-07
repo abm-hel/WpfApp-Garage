@@ -127,10 +127,10 @@ namespace WpfApp_Garage.ViewModel
                 unModele.modele = Tmp.modele;
                 unModele.motorisation = Tmp.motorisation;
                 unModele.carburant = Tmp.carburant;
-                unModele.cylindree = (int)Tmp.cylindree;
-                unModele.puissance = (int)Tmp.puissance;
-                unModele.consommation = (float)Tmp.consommation;
-                unModele.poids = (int)Tmp.poids;
+                unModele.cylindree = Tmp.cylindree;
+                unModele.puissance = Tmp.puissance;
+                unModele.consommation = Tmp.consommation;
+                unModele.poids = Tmp.poids;
                 nAjout = bcpModeles.IndexOf(modeleSelectionnee);
                 ActiverUneFiche = true;
             }
@@ -144,25 +144,28 @@ namespace WpfApp_Garage.ViewModel
             }
         }
 
-     
-
         public void ModeleSelectionnee2UnModele()
         {
             unModele.id = modeleSelectionnee.id;
             unModele.modele = modeleSelectionnee.modele;
             unModele.motorisation = modeleSelectionnee.motorisation;
             unModele.carburant = modeleSelectionnee.carburant;
-            unModele.cylindree = (int)modeleSelectionnee.cylindree;
-            unModele.puissance = (int)modeleSelectionnee.puissance;
-            unModele.consommation = (float)modeleSelectionnee.consommation;
-            unModele.poids = (int) modeleSelectionnee.poids;
+            unModele.cylindree = modeleSelectionnee.cylindree;
+            unModele.puissance = modeleSelectionnee.puissance;
+            unModele.consommation = modeleSelectionnee.consommation;
+            unModele.poids = modeleSelectionnee.poids;
         }
 
         public class VM_UnModele : BasePropriete
         {
-            private int _id, _cylindree, _puissance, _poids;
-            private string _modele, _motorisation, _carburant;
-            private float _consommation;
+            private int _id;
+            private string _modele;
+            private string _motorisation;
+            private string _carburant;
+            private int? _cylindree;
+            private int? _puissance;
+            private double? _consommation;
+            private int? _poids;
 
             public int id
             {
@@ -185,28 +188,28 @@ namespace WpfApp_Garage.ViewModel
                 set { AssignerChamp<string>(ref _carburant, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public int cylindree
+            public int? cylindree
             {
                 get { return _cylindree; }
-                set { AssignerChamp<int>(ref _cylindree, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<int?>(ref _cylindree, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public int puissance
+            public int? puissance
             {
                 get { return _puissance; }
-                set { AssignerChamp<int>(ref _puissance, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<int?>(ref _puissance, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public float consommation
+            public double? consommation
             {
                 get { return _consommation; }
-                set { AssignerChamp<float>(ref _consommation, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<double?>(ref _consommation, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public int poids
+            public int? poids
             {
                 get { return _poids; }
-                set { AssignerChamp<int>(ref _poids, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<int?>(ref _poids, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
         }

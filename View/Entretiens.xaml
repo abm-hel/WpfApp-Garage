@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Garage.View"
         mc:Ignorable="d"
-        Title="Entretiens" Height="450" Width="600">
+        Title="Entretiens" Height="400" Width="300">
     
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
@@ -18,8 +18,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <TextBox AcceptsReturn="True" Grid.ColumnSpan="2" />
 
         <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" >
             

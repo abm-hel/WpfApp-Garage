@@ -126,10 +126,10 @@ namespace WpfApp_Garage.ViewModel
                 uneIntervention = new VM_UneIntervention();
                 uneIntervention.id = Tmp.id;
                 uneIntervention.description = Tmp.description;
-                uneIntervention.nombreHeures = (int)Tmp.nombreHeures;
-                uneIntervention.prixHeure = (double)Tmp.prixHeure;
-                uneIntervention.tva = (double)Tmp.tva;
-                uneIntervention.prixTotal = (double)Tmp.prixTotal;
+                uneIntervention.nombreHeures = Tmp.nombreHeures;
+                uneIntervention.prixHeure = Tmp.prixHeure;
+                uneIntervention.tva = Tmp.tva;
+                uneIntervention.prixTotal = Tmp.prixTotal;
                 ActiverUneFiche = true;
             }
         }
@@ -146,17 +146,20 @@ namespace WpfApp_Garage.ViewModel
         {
             uneIntervention.id = interventionSelectionnee.id;
             uneIntervention.description = interventionSelectionnee.description;
-            uneIntervention.nombreHeures = (int)interventionSelectionnee.nombreHeures;
-            uneIntervention.prixHeure = (double)interventionSelectionnee.prixHeure;
-            uneIntervention.tva = (double)interventionSelectionnee.tva;
-            uneIntervention.prixTotal = (double)interventionSelectionnee.prixTotal;
+            uneIntervention.nombreHeures = interventionSelectionnee.nombreHeures;
+            uneIntervention.prixHeure = interventionSelectionnee.prixHeure;
+            uneIntervention.tva = interventionSelectionnee.tva;
+            uneIntervention.prixTotal = interventionSelectionnee.prixTotal;
         }
 
         public class VM_UneIntervention : BasePropriete
         {
-            private int _id, _nombreHeures;
+            private int _id;
             private string _description;
-            private double _tva, _prixTotal, _prixHeure;
+            private int? _nombreHeures;
+            private double? _prixHeure;
+            private double? _tva;
+            private double? _prixTotal;
 
             public int id
             {
@@ -169,28 +172,28 @@ namespace WpfApp_Garage.ViewModel
                 set { AssignerChamp<string>(ref _description, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public int nombreHeures
+            public int? nombreHeures
             {
                 get { return _nombreHeures; }
-                set { AssignerChamp<int>(ref _nombreHeures, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<int?>(ref _nombreHeures, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public double prixHeure
+            public double? prixHeure
             {
                 get { return _prixHeure; }
-                set { AssignerChamp<double>(ref _prixHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<double?>(ref _prixHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public double tva
+            public double? tva
             {
                 get { return _tva; }
-                set { AssignerChamp<double>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<double?>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
-            public double prixTotal
+            public double? prixTotal
             {
                 get { return _prixTotal; }
-                set { AssignerChamp<double>(ref _prixTotal, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+                set { AssignerChamp<double?>(ref _prixTotal, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
         }
     }

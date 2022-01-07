@@ -29,28 +29,6 @@ namespace WpfApp_Garage.View
             InitializeComponent();
             localClient = new ViewModel.VM_Client();
             DataContext = localClient;
-            FlowDocument fd = new FlowDocument();
-            Paragraph p = new Paragraph();
-            p.Inlines.Add(new Bold(new Run("Titre de document")));
-            p.Inlines.Add(new LineBreak());
-            p.Inlines.Add(new Run("Liste des clients encodées"));
-            fd.Blocks.Add(p);
-            List l = new List();
-            foreach (C_Client cp in localClient.bcpClients)
-            {
-                DateTime dateCp = new DateTime();
-                dateCp = (DateTime)cp.dateNaissance;
-                
-                Paragraph pl = new Paragraph(new Run(cp.prenom + " " + cp.nom
-                 + " (" + dateCp.Day.ToString("D2") + "/"+ dateCp.Month.ToString("D2") + "/" + dateCp.Year.ToString("D4") + ")"));
-                l.ListItems.Add(new ListItem(pl));
-            }
-            fd.Blocks.Add(l);
-            richTextBoxDoc.Document = fd;
-            FileStream fs = new FileStream(@"clients.rtf", FileMode.Create);
-            TextRange tr = new TextRange(richTextBoxDoc.Document.ContentStart, richTextBoxDoc.Document.ContentEnd);
-            tr.Save(fs, System.Windows.DataFormats.Rtf);
-            
         }
 
         private void dataGridClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
