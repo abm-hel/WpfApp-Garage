@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp_Garage.ViewModel;
 
 namespace WpfApp_Garage
 {
@@ -20,7 +21,10 @@ namespace WpfApp_Garage
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private ViewModel.VM_TableauBord localTableauBord;
+
+        public BaseCommande remplirEntretienIntervention { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -79,17 +83,20 @@ namespace WpfApp_Garage
 
         private void dataGridInterventions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dataGridInterventions.SelectedIndex >= 0)
+                localTableauBord.InterventionSelectionnee2UneIntervention();
         }
 
         private void dataGridEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dataGridEntretiens.SelectedIndex >= 0)
+                localTableauBord.EntretienSelectionnee2UnEntretien();
         }
 
         private void dataGridEntretiens2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dataGridEntretiens2.SelectedIndex >= 0)
+                localTableauBord.EntretienSelectionnee2UnEntretien();
         }
 
         private void dataGridEntretien_Interventions_SelectionChanged(object sender, SelectionChangedEventArgs e)

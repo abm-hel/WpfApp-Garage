@@ -49,7 +49,7 @@
                             <Grid Grid.Column="0">
                                 <DataGrid Name="dataGridInterventions" ItemsSource="{Binding Path=bcpInterventions}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-                                    SelectedItem="{Binding InterventionSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
+                                    SelectedItem="{Binding InterventionSelectionnee,  Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Intervetion" Binding="{Binding Path=description}" Width="Auto" />
@@ -64,7 +64,7 @@
                             <Grid Grid.Column="1">
                                 <DataGrid Name="dataGridEntretiens" ItemsSource="{Binding Path=bcpEntretiens}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-                                    SelectedItem="{Binding EntretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretiens_SelectionChanged" >
+                                    SelectedItem="{Binding EntretiennSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretiens_SelectionChanged" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Véhicule" Binding="{Binding Path=vehiculeId}" Width="Auto" />
@@ -76,7 +76,7 @@
 
                         <Grid Grid.Row="1">
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
-                                <Button Name="buttonAjouterIntervention" Content="Ajouter une intervention" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterIntervention}" />
+                                <Button Name="buttonAjouterIntervention" Content="Ajouter une intervention" Padding="15,3" Width="auto"  Command="{Binding RemplirEntretienIntervention}" />
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -124,7 +124,7 @@
                         </Grid>
                         <Grid Grid.Row="1">
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
-                                <Button Name="buttonAjouterPiece" Content="Ajouter une pièce" Padding="15,3" Width="auto"  Command="{Binding commandeAjouterPiece}" />
+                                <Button Name="buttonAjouterPiece" Content="Ajouter une pièce" Padding="15,3" Width="auto"  Command="{Binding RemplirEntretienPiece}" />
                             </StackPanel>
                         </Grid>
 
