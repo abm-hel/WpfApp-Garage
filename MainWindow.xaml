@@ -176,7 +176,7 @@
                         <Grid Grid.Row="0">
                             <DataGrid Name="dataGridEntretien_Interventions" ItemsSource="{Binding Path=BcpEntretien_Interventions}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-                                    SelectedItem="{Binding Entretien_InterventionsSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretien_Interventions_SelectionChanged" >
+                                    SelectedItem="{Binding Entretien_InterventionSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridEntretien_Interventions_SelectionChanged" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=id}" />
                                     <DataGridTextColumn Header="Intervention" Binding="{Binding Path=interventionId}" Width="*" />

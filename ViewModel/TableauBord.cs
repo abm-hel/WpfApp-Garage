@@ -20,6 +20,7 @@ namespace WpfApp_Garage.ViewModel
         private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.chaineConnexionBD"].ConnectionString;
         public BaseCommande RemplirEntretienIntervention { get; set; }
         public BaseCommande RemplirEntretienPiece { get; set; }
+        public BaseCommande commandeSupprimerIntervention { get; set; }
 
         private VM_TableauBord _unTableauBord;
         public VM_TableauBord unTableauBord
@@ -50,6 +51,13 @@ namespace WpfApp_Garage.ViewModel
             set { AssignerChamp<C_Piece>(ref _PieceSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
 
+        private C_Entretien_Intervention _Entretien_InterventionSelectionnee;
+        public C_Entretien_Intervention Entretien_InterventionSelectionnee
+        {
+            get { return _Entretien_InterventionSelectionnee; }
+            set { AssignerChamp<C_Entretien_Intervention>(ref _Entretien_InterventionSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+
 
         private VM_UnEntretien _UnEntretien;
         public VM_UnEntretien UnEntretien
@@ -57,6 +65,8 @@ namespace WpfApp_Garage.ViewModel
             get { return _UnEntretien; }
             set { AssignerChamp<VM_UnEntretien>(ref _UnEntretien, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
+
+   
 
         private VM_UneIntervention _UneIntervention;
         public VM_UneIntervention UneIntervention
@@ -71,7 +81,16 @@ namespace WpfApp_Garage.ViewModel
             get { return _UnePiece; }
             set { AssignerChamp<VM_UnePiece>(ref _UnePiece, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
+
+        private VM_UnEntretien_Intervention _UnEntretien_Intervention;
+        public VM_UnEntretien_Intervention UnEntretien_Intervention
+        {
+            get { return _UnEntretien_Intervention; }
+            set { AssignerChamp<VM_UnEntretien_Intervention>(ref _UnEntretien_Intervention, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
         #endregion
+
+
 
         #region Données extérieures
 
@@ -140,18 +159,31 @@ namespace WpfApp_Garage.ViewModel
             UnePiece.prix = PieceSelectionnee.prix;
             UnePiece.tva = PieceSelectionnee.tva;
             UnePiece.quantite = PieceSelectionnee.quantite;
+            
+        }
+        
+        public void Entretien_InterventionSelectionnee2UneEntretien_Intervention()
+        {
+            UnEntretien_Intervention.id = Entretien_InterventionSelectionnee.id;
+            UnEntretien_Intervention.interventionId = Entretien_InterventionSelectionnee.interventionId;
+            UnEntretien_Intervention.entretienId = Entretien_InterventionSelectionnee.entretienId;
+            UnEntretien_Intervention.prixHeure = Entretien_InterventionSelectionnee.prixHeure;
+            UnEntretien_Intervention.prix = Entretien_InterventionSelectionnee.prix;
+            UnEntretien_Intervention.tva = Entretien_InterventionSelectionnee.tva;
         }
 
         public VM_TableauBord()
         {
             UnEntretien = new VM_UnEntretien();
             UneIntervention = new VM_UneIntervention();
+            UnEntretien_Intervention = new VM_UnEntretien_Intervention();
             bcpInterventions = ChargerInterventions(chaineConnexion);
             bcpEntretiens = ChargerEntretiens(chaineConnexion);
             bcpPieces = ChargerPieces(chaineConnexion);
             BcpEntretien_Interventions = ChargerEntretienInterventions(chaineConnexion);
             RemplirEntretienIntervention = new BaseCommande(EncoderEntretienIntervention);
-            
+            commandeSupprimerIntervention = new BaseCommande(SupprimerIntervention);
+
         }
 
         private ObservableCollection<C_Intervention> ChargerInterventions(string chaineConnexion)
@@ -200,12 +232,67 @@ namespace WpfApp_Garage.ViewModel
            BcpEntretien_Interventions.Add(new C_Entretien_Intervention(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure, InterventionSelectionnee.prixTotal, InterventionSelectionnee.tva));
            MessageBox.Show("ok");
         }
+        
+        public void SupprimerIntervention()
+        {
+            if(Entretien_InterventionSelectionnee !=null)
+            {
+                new G_Entretien_Intervention(chaineConnexion).Lire_ID(Entretien_InterventionSelectionnee.id);
+                BcpEntretien_Interventions.Remove(Entretien_InterventionSelectionnee);
+            }
+        }
+
 
         public void EncoderEntretienPiece()
         {
             //new G_Entretien_Piece(chaineConnexion).Ajouter(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure, InterventionSelectionnee.prixTotal, InterventionSelectionnee.tva);
             //BcpEntretien_Interventions.Add(new G_Entretien_Piece(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure, InterventionSelectionnee.prixTotal, InterventionSelectionnee.tva));
             //MessageBox.Show("ok");
+        }
+
+        public class VM_UnEntretien_Intervention : BasePropriete
+        {
+            private int _id;
+            private int? _interventionId;
+            private int? _entretienId;
+            private double? _prixHeure;
+            private double? _prix;
+            private double? _tva;
+
+            public int id
+            {
+                get { return _id; }
+                set { AssignerChamp<int>(ref _id, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+            public int? interventionId
+            {
+                get { return _interventionId; }
+                set { AssignerChamp<int?>(ref _interventionId, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public int? entretienId
+            {
+                get { return _entretienId; }
+                set { AssignerChamp<int?>(ref _entretienId, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double? prixHeure
+            {
+                get { return _prixHeure; }
+                set { AssignerChamp<double?>(ref _prixHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double? prix
+            {
+                get { return _prix; }
+                set { AssignerChamp<double?>(ref _prix, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double? tva
+            {
+                get { return _tva; }
+                set { AssignerChamp<double?>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
         }
     }
 }
