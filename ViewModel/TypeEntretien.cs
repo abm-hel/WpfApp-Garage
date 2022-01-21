@@ -327,9 +327,10 @@ namespace WpfApp_Garage.ViewModel
                 unTypeEntretien_intervention.prixHeure = ModificationIntervention.prixHeure;
                 unTypeEntretien_intervention.tva = ModificationIntervention.tva;
                 unTypeEntretien_intervention.prix = ModificationIntervention.prixTotal;
-
+               
                 new G_TypeEntretien_Intervention(chaineConnexion).Modifier(unTypeEntretien_intervention.id, unTypeEntretien_intervention.interventionId, unTypeEntretien_intervention.entretienId, unTypeEntretien_intervention.prixHeure, unTypeEntretien_intervention.prix, unTypeEntretien_intervention.tva);
                 bcpTypeEntretiens_interventions[nAjout] = new C_TypeEntretien_Intervention(unTypeEntretien_intervention.id, unTypeEntretien_intervention.interventionId, unTypeEntretien_intervention.entretienId, unTypeEntretien_intervention.prixHeure, unTypeEntretien_intervention.prix, unTypeEntretien_intervention.tva);
+               
             }
             ActiverUneFiche2 = false;
         }
@@ -358,6 +359,7 @@ namespace WpfApp_Garage.ViewModel
                 unTypeEntretien_intervention.prixHeure = Tmp.prixHeure;
                 unTypeEntretien_intervention.tva = Tmp.tva;
                 unTypeEntretien_intervention.prix = Tmp.prix;
+                nAjout = bcpTypeEntretiens_interventions.IndexOf(typeEntretienSelectionnee_intervention);
                 ActiverUneFiche2 = true;
             }
         }
@@ -403,7 +405,6 @@ namespace WpfApp_Garage.ViewModel
             {
                 C_Piece AjoutPiece = new C_Piece();
                 AjoutPiece = new G_Piece(chaineConnexion).Lire_ID((int)unTypeEntretien_piece.pieceId);
-                unTypeEntretien_piece.quantite = AjoutPiece.quantite;
                 unTypeEntretien_piece.prix = AjoutPiece.prix;
                 unTypeEntretien_piece.tva = AjoutPiece.tva;
                 unTypeEntretien_piece.id = new G_TypeEntretien_Piece(chaineConnexion).Ajouter(unTypeEntretien_piece.pieceId, unTypeEntretien_piece.entretienId, unTypeEntretien_piece.quantite, unTypeEntretien_piece.prix, unTypeEntretien_piece.tva);
@@ -413,13 +414,11 @@ namespace WpfApp_Garage.ViewModel
             {
                 C_Piece ModificationPiece = new C_Piece();
                 ModificationPiece = new G_Piece(chaineConnexion).Lire_ID((int)unTypeEntretien_piece.pieceId);
-
-                unTypeEntretien_piece.quantite = ModificationPiece.quantite;
                 unTypeEntretien_piece.prix = ModificationPiece.prix;
                 unTypeEntretien_piece.tva = ModificationPiece.tva;
-
                 new G_TypeEntretien_Piece(chaineConnexion).Modifier(unTypeEntretien_piece.id, unTypeEntretien_piece.pieceId, unTypeEntretien_piece.entretienId, unTypeEntretien_piece.quantite, unTypeEntretien_piece.prix, unTypeEntretien_piece.tva);
                 bcpTypeEntretiens_pieces[nAjout] = new C_TypeEntretien_Piece(unTypeEntretien_piece.id, unTypeEntretien_piece.pieceId, unTypeEntretien_piece.entretienId, unTypeEntretien_piece.quantite, unTypeEntretien_piece.prix, unTypeEntretien_piece.tva);
+               
             }
             ActiverUneFiche3 = false;
         }
@@ -448,6 +447,7 @@ namespace WpfApp_Garage.ViewModel
                 unTypeEntretien_piece.quantite = Tmp.quantite;
                 unTypeEntretien_piece.tva = Tmp.tva;
                 unTypeEntretien_piece.prix = Tmp.prix;
+                nAjout = bcpTypeEntretiens_pieces.IndexOf(typeEntretienSelectionnee_piece);
                 ActiverUneFiche3 = true;
             }
         }

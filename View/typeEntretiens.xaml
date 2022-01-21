@@ -124,6 +124,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+               <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -138,6 +139,10 @@
             <TextBlock Name="textBlocPiece" Text="Pièce" Grid.Row="1" VerticalAlignment="Center" />
             <ComboBox Name="comboBoxPiece" IsEditable="True" IsReadOnly="True" Text="Sélectionner une pièce" Grid.Row="1" Grid.Column="1" Margin="3"
             SelectedValue="{Binding Path=unTypeEntretien_piece.pieceId, Mode=TwoWay}" ItemsSource="{Binding Path=bcpPieces}" DisplayMemberPath="nom" SelectedValuePath="id"/>
+
+            <TextBlock Name="textBlocQuanite" Text="Quantité" Grid.Row="2" VerticalAlignment="Center" />
+            <TextBox Name="textBoxQuantite" Grid.Row="2" Grid.Column="1" Margin="3"
+            Text="{Binding Path=unTypeEntretien_piece.quantite, Mode=TwoWay}"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" >
