@@ -21,6 +21,7 @@ namespace WpfApp_Garage.ViewModel
         public BaseCommande RemplirEntretienIntervention { get; set; }
         public BaseCommande RemplirEntretienPiece { get; set; }
         public BaseCommande commandeSupprimerIntervention { get; set; }
+        public BaseCommande commandeSupprimerPiece { get; set; }
 
         private VM_TableauBord _unTableauBord;
         public VM_TableauBord unTableauBord
@@ -58,6 +59,13 @@ namespace WpfApp_Garage.ViewModel
             set { AssignerChamp<C_Entretien_Intervention>(ref _Entretien_InterventionSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
 
+        private C_Entretien_Piece _Entretien_PieceSelectionnee;
+        public C_Entretien_Piece Entretien_PieceSelectionnee
+        {
+            get { return _Entretien_PieceSelectionnee; }
+            set { AssignerChamp<C_Entretien_Piece>(ref _Entretien_PieceSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+
 
         private VM_UnEntretien _UnEntretien;
         public VM_UnEntretien UnEntretien
@@ -87,6 +95,13 @@ namespace WpfApp_Garage.ViewModel
         {
             get { return _UnEntretien_Intervention; }
             set { AssignerChamp<VM_UnEntretien_Intervention>(ref _UnEntretien_Intervention, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+
+        private VM_UnEntretien_Piece _UnEntretien_Piece;
+        public VM_UnEntretien_Piece UnEntretien_Piece
+        {
+            get { return _UnEntretien_Piece; }
+            set { AssignerChamp<VM_UnEntretien_Piece>(ref _UnEntretien_Piece, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         #endregion
 
@@ -172,17 +187,31 @@ namespace WpfApp_Garage.ViewModel
             UnEntretien_Intervention.tva = Entretien_InterventionSelectionnee.tva;
         }
 
+        public void Entretien_PieceSelectionnee2UneEntretien_Piece()
+        {
+            UnEntretien_Piece.id = Entretien_PieceSelectionnee.id;
+            UnEntretien_Piece.pieceId = Entretien_PieceSelectionnee.pieceId;
+            UnEntretien_Piece.entretienId = Entretien_PieceSelectionnee.entretienId;
+            UnEntretien_Piece.quantite = Entretien_PieceSelectionnee.quantite;
+            UnEntretien_Piece.prix = Entretien_PieceSelectionnee.prix;
+            UnEntretien_Piece.tva = Entretien_PieceSelectionnee.tva;
+        }
+
         public VM_TableauBord()
         {
             UnEntretien = new VM_UnEntretien();
             UneIntervention = new VM_UneIntervention();
             UnEntretien_Intervention = new VM_UnEntretien_Intervention();
+            UnEntretien_Piece = new VM_UnEntretien_Piece();
             bcpInterventions = ChargerInterventions(chaineConnexion);
             bcpEntretiens = ChargerEntretiens(chaineConnexion);
             bcpPieces = ChargerPieces(chaineConnexion);
             BcpEntretien_Interventions = ChargerEntretienInterventions(chaineConnexion);
+            BcpEntretien_Pieces = ChargerEntretienPieces(chaineConnexion);
             RemplirEntretienIntervention = new BaseCommande(EncoderEntretienIntervention);
+            RemplirEntretienPiece = new BaseCommande(EncoderEntretienPiece);
             commandeSupprimerIntervention = new BaseCommande(SupprimerIntervention);
+            commandeSupprimerPiece= new BaseCommande(SupprimerPiece);
 
         }
 
@@ -226,6 +255,16 @@ namespace WpfApp_Garage.ViewModel
             return c;
         }
 
+        private ObservableCollection<C_Entretien_Piece> ChargerEntretienPieces(string chaineConnexion)
+        {
+            //ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
+            List<C_Entretien_Piece> lTmp = new G_Entretien_Piece(chaineConnexion).Lire("id");
+            ObservableCollection<C_Entretien_Piece> c = new ObservableCollection<C_Entretien_Piece>();
+            foreach (C_Entretien_Piece Tmp in lTmp)
+                c.Add(Tmp);
+            return c;
+        }
+
         public void EncoderEntretienIntervention()
         {
            new G_Entretien_Intervention(chaineConnexion).Ajouter(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure,InterventionSelectionnee.prixTotal,InterventionSelectionnee.tva);
@@ -245,9 +284,18 @@ namespace WpfApp_Garage.ViewModel
 
         public void EncoderEntretienPiece()
         {
-            //new G_Entretien_Piece(chaineConnexion).Ajouter(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure, InterventionSelectionnee.prixTotal, InterventionSelectionnee.tva);
-            //BcpEntretien_Interventions.Add(new G_Entretien_Piece(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure, InterventionSelectionnee.prixTotal, InterventionSelectionnee.tva));
-            //MessageBox.Show("ok");
+            new G_Entretien_Piece(chaineConnexion).Ajouter(PieceSelectionnee.id, EntretiennSelectionnee.id, UnEntretien_Piece.quantite, PieceSelectionnee.prix, PieceSelectionnee.tva);
+            BcpEntretien_Pieces.Add(new C_Entretien_Piece(PieceSelectionnee.id, EntretiennSelectionnee.id, UnEntretien_Piece.quantite, PieceSelectionnee.prix, PieceSelectionnee.tva));
+            MessageBox.Show("ok");
+        }
+
+        public void SupprimerPiece()
+        {
+            if (Entretien_PieceSelectionnee != null)
+            {
+                new G_Entretien_Piece(chaineConnexion).Lire_ID(Entretien_PieceSelectionnee.id);
+                BcpEntretien_Pieces.Remove(Entretien_PieceSelectionnee);
+            }
         }
 
         public class VM_UnEntretien_Intervention : BasePropriete
@@ -280,6 +328,51 @@ namespace WpfApp_Garage.ViewModel
             {
                 get { return _prixHeure; }
                 set { AssignerChamp<double?>(ref _prixHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double? prix
+            {
+                get { return _prix; }
+                set { AssignerChamp<double?>(ref _prix, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public double? tva
+            {
+                get { return _tva; }
+                set { AssignerChamp<double?>(ref _tva, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+        }
+
+        public class VM_UnEntretien_Piece : BasePropriete
+        {
+            private int _id;
+            private int? _pieceId;
+            private int? _entretienId;
+            private int? _quantite;
+            private double? _prix;
+            private double? _tva;
+
+            public int id
+            {
+                get { return _id; }
+                set { AssignerChamp<int>(ref _id, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+            public int? pieceId
+            {
+                get { return _pieceId; }
+                set { AssignerChamp<int?>(ref _pieceId, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public int? entretienId
+            {
+                get { return _entretienId; }
+                set { AssignerChamp<int?>(ref _entretienId, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            }
+
+            public int? quantite
+            {
+                get { return _quantite; }
+                set { AssignerChamp<int?>(ref _quantite, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
 
             public double? prix

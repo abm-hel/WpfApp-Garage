@@ -104,5 +104,11 @@ namespace WpfApp_Garage
             if (dataGridEntretien_Interventions.SelectedIndex >= 0)
                 localTableauBord.Entretien_InterventionSelectionnee2UneEntretien_Intervention();
         }
+
+        private void dataGridEntretien_Pieces_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridEntretien_Pieces.SelectedIndex >= 0)
+                localTableauBord.Entretien_PieceSelectionnee2UneEntretien_Piece();
+        }
     }
 }
