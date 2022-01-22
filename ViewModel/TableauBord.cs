@@ -116,6 +116,13 @@ namespace WpfApp_Garage.ViewModel
             set { _bcpInterventions = value; }
         }
 
+        private ObservableCollection<C_TypeEntretien> _bcpTypeEntretiens = new ObservableCollection<C_TypeEntretien>();
+        public ObservableCollection<C_TypeEntretien> bcpTypeEntretiens
+        {
+            get { return _bcpTypeEntretiens; }
+            set { _bcpTypeEntretiens = value; }
+        }
+
         private ObservableCollection<C_Entretien> _bcpEntretiens = new ObservableCollection<C_Entretien>();
         public ObservableCollection<C_Entretien> bcpEntretiens
         {
@@ -205,6 +212,7 @@ namespace WpfApp_Garage.ViewModel
             UnEntretien_Piece = new VM_UnEntretien_Piece();
             bcpInterventions = ChargerInterventions(chaineConnexion);
             bcpEntretiens = ChargerEntretiens(chaineConnexion);
+            bcpTypeEntretiens = ChargerTypeEntretiens(chaineConnexion);
             bcpPieces = ChargerPieces(chaineConnexion);
             BcpEntretien_Interventions = ChargerEntretienInterventions(chaineConnexion);
             BcpEntretien_Pieces = ChargerEntretienPieces(chaineConnexion);
@@ -231,6 +239,14 @@ namespace WpfApp_Garage.ViewModel
             List<C_Entretien> lTmp = new G_Entretien(chaineConnexion).Lire("id");
             ObservableCollection<C_Entretien> c = new ObservableCollection<C_Entretien>();
             foreach (C_Entretien Tmp in lTmp)
+                c.Add(Tmp);
+            return c;
+        }private ObservableCollection<C_TypeEntretien> ChargerTypeEntretiens(string chaineConnexion)
+        {
+            //ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
+            List<C_TypeEntretien> lTmp = new G_TypeEntretien(chaineConnexion).Lire("id");
+            ObservableCollection<C_TypeEntretien> c = new ObservableCollection<C_TypeEntretien>();
+            foreach (C_TypeEntretien Tmp in lTmp)
                 c.Add(Tmp);
             return c;
         }
