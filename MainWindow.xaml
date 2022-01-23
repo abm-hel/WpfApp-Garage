@@ -157,7 +157,7 @@
                             <Grid Grid.Column="0">
                                 <DataGrid Name="dataGridTypeEntretiens" ItemsSource="{Binding Path=bcpTypeEntretiens}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
                                     IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-                                    SelectedItem="{Binding TypeEntretiennSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridInterventions_SelectionChanged" >
+                                    SelectedItem="{Binding TypeEntretienSelectionnee, Mode=TwoWay}" SelectionChanged="dataGridTypeEntretiens_SelectionChanged" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Id" Binding="{Binding Path=id}" />
                                         <DataGridTextColumn Header="Type Entretien" Binding="{Binding Path=nom}" Width="*" />
@@ -187,7 +187,7 @@
 
            
                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="30,3" Grid.Column="2" >
-                                <Button Name="buttonAjouterTypeEntrtien" Content="Ajouter" Padding="15,3" Width="auto"  Command="{Binding RemplirEntretienPiece}" />
+                                <Button Name="buttonAjouterTypeEntrtien" Content="Ajouter" Padding="15,3" Width="auto"  Command="{Binding RemplirTypeEntretien}" />
                             </StackPanel>
                         </Grid>
 

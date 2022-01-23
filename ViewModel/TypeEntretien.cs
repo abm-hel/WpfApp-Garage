@@ -302,7 +302,7 @@ namespace WpfApp_Garage.ViewModel
         {
             if (typeEntretienSelectionnee != null)
             {
-                new G_Intervention(chaineConnexion).Supprimer(typeEntretienSelectionnee.id);
+                new G_TypeEntretien(chaineConnexion).Supprimer(typeEntretienSelectionnee.id);
                 bcpTypeEntretiens.Remove(typeEntretienSelectionnee);
             }
         }

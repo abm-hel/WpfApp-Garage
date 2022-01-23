@@ -11,6 +11,7 @@ using System.Windows;
 using static WpfApp_Garage.ViewModel.VM_Entretien;
 using static WpfApp_Garage.ViewModel.VM_Intervention;
 using static WpfApp_Garage.ViewModel.VM_Piece;
+using static WpfApp_Garage.ViewModel.VM_TypeEntretien;
 
 namespace WpfApp_Garage.ViewModel
 {
@@ -21,6 +22,7 @@ namespace WpfApp_Garage.ViewModel
         public BaseCommande RemplirEntretienIntervention { get; set; }
         public BaseCommande RemplirEntretienPiece { get; set; }
         public BaseCommande commandeSupprimerIntervention { get; set; }
+        public BaseCommande RemplirTypeEntretien { get; set; }
         public BaseCommande commandeSupprimerPiece { get; set; }
 
         private VM_TableauBord _unTableauBord;
@@ -43,6 +45,13 @@ namespace WpfApp_Garage.ViewModel
         {
             get { return _EntretiennSelectionnee; }
             set { AssignerChamp<C_Entretien>(ref _EntretiennSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }   
+        
+        private C_TypeEntretien _TypeEntretienSelectionnee;
+        public C_TypeEntretien TypeEntretienSelectionnee
+        {
+            get { return _TypeEntretienSelectionnee; }
+            set { AssignerChamp<C_TypeEntretien>(ref _TypeEntretienSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
 
         private C_Piece _PieceSelectionnee;
@@ -72,6 +81,13 @@ namespace WpfApp_Garage.ViewModel
         {
             get { return _UnEntretien; }
             set { AssignerChamp<VM_UnEntretien>(ref _UnEntretien, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        
+        private VM_UnTypeEntretien _UnTypeEntretien;
+        public VM_UnTypeEntretien UnTypeEntretien
+        {
+            get { return _UnTypeEntretien; }
+            set { AssignerChamp<VM_UnTypeEntretien>(ref _UnTypeEntretien, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
 
    
@@ -161,6 +177,13 @@ namespace WpfApp_Garage.ViewModel
             UnEntretien.id = EntretiennSelectionnee.id;
             UnEntretien.vehiculeId = EntretiennSelectionnee.vehiculeId;
             UnEntretien.datePassage = EntretiennSelectionnee.datePassage;
+        }    
+        
+        public void TypeEntretienSelectionnee2UnTypeEntretien()
+        {
+            UnTypeEntretien.id = TypeEntretienSelectionnee.id;
+            UnTypeEntretien.nom = TypeEntretienSelectionnee.nom;
+            UnTypeEntretien.kilometrage = TypeEntretienSelectionnee.kilometrage;
         }
 
         public void InterventionSelectionnee2UneIntervention()
@@ -207,6 +230,7 @@ namespace WpfApp_Garage.ViewModel
         public VM_TableauBord()
         {
             UnEntretien = new VM_UnEntretien();
+            UnTypeEntretien = new VM_UnTypeEntretien();
             UneIntervention = new VM_UneIntervention();
             UnEntretien_Intervention = new VM_UnEntretien_Intervention();
             UnEntretien_Piece = new VM_UnEntretien_Piece();
@@ -220,6 +244,7 @@ namespace WpfApp_Garage.ViewModel
             RemplirEntretienPiece = new BaseCommande(EncoderEntretienPiece);
             commandeSupprimerIntervention = new BaseCommande(SupprimerIntervention);
             commandeSupprimerPiece= new BaseCommande(SupprimerPiece);
+            RemplirTypeEntretien = new BaseCommande(EncoderTypeEntretien);
 
         }
 
@@ -281,6 +306,26 @@ namespace WpfApp_Garage.ViewModel
             return c;
         }
 
+        private ObservableCollection<C_TypeEntretien_Intervention> ChargerTypeEntretien_Interventions(string chaineConnexion)
+        {
+            //ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
+            List<C_TypeEntretien_Intervention> lTmp = new G_TypeEntretien_Intervention(chaineConnexion).Lire("id");
+            ObservableCollection<C_TypeEntretien_Intervention> c = new ObservableCollection<C_TypeEntretien_Intervention>();
+            foreach (C_TypeEntretien_Intervention Tmp in lTmp)
+                c.Add(Tmp);
+            return c;
+        }
+
+        private ObservableCollection<C_TypeEntretien_Piece> ChargerTypeEntretien_Pieces(string chaineConnexion)
+        {
+            //ObservableCollection<C_Client> rep = new ObservableCollection<C_Client>();
+            List<C_TypeEntretien_Piece> lTmp = new G_TypeEntretien_Piece(chaineConnexion).Lire("id");
+            ObservableCollection<C_TypeEntretien_Piece> c = new ObservableCollection<C_TypeEntretien_Piece>();
+            foreach (C_TypeEntretien_Piece Tmp in lTmp)
+                c.Add(Tmp);
+            return c;
+        }
+
         public void EncoderEntretienIntervention()
         {
            new G_Entretien_Intervention(chaineConnexion).Ajouter(InterventionSelectionnee.id, EntretiennSelectionnee.id, InterventionSelectionnee.prixHeure,InterventionSelectionnee.prixTotal,InterventionSelectionnee.tva);
@@ -292,7 +337,7 @@ namespace WpfApp_Garage.ViewModel
         {
             if(Entretien_InterventionSelectionnee !=null)
             {
-                new G_Entretien_Intervention(chaineConnexion).Lire_ID(Entretien_InterventionSelectionnee.id);
+                new G_Entretien_Intervention(chaineConnexion).Supprimer(Entretien_InterventionSelectionnee.id);
                 BcpEntretien_Interventions.Remove(Entretien_InterventionSelectionnee);
             }
         }
@@ -309,9 +354,34 @@ namespace WpfApp_Garage.ViewModel
         {
             if (Entretien_PieceSelectionnee != null)
             {
-                new G_Entretien_Piece(chaineConnexion).Lire_ID(Entretien_PieceSelectionnee.id);
+                new G_Entretien_Piece(chaineConnexion).Supprimer(Entretien_PieceSelectionnee.id);
                 BcpEntretien_Pieces.Remove(Entretien_PieceSelectionnee);
             }
+        }
+
+        public void EncoderTypeEntretien()
+        {
+            ObservableCollection<C_TypeEntretien_Intervention> lesInterventions = ChargerTypeEntretien_Interventions(chaineConnexion);
+            ObservableCollection<C_TypeEntretien_Piece> lesPieces = ChargerTypeEntretien_Pieces(chaineConnexion);
+
+           foreach (C_TypeEntretien_Intervention i in lesInterventions)
+            {
+                if(i.entretienId == TypeEntretienSelectionnee.id )
+                {
+                    new G_Entretien_Intervention(chaineConnexion).Ajouter(i.interventionId, EntretiennSelectionnee.id, i.prixHeure, i.prix, i.tva);
+                    BcpEntretien_Interventions.Add(new C_Entretien_Intervention(i.interventionId, EntretiennSelectionnee.id, i.prixHeure, i.prix, i.tva));
+                }
+            }
+
+            foreach(C_TypeEntretien_Piece p in lesPieces)
+            {
+                if(p.entretienId == TypeEntretienSelectionnee.id)
+                {
+                    new G_Entretien_Piece(chaineConnexion).Ajouter(p.pieceId, EntretiennSelectionnee.id, p.quantite, p.prix, p.tva);
+                    BcpEntretien_Pieces.Add(new C_Entretien_Piece(p.pieceId, EntretiennSelectionnee.id, p.quantite, p.prix, p.tva));
+                }
+            }
+            MessageBox.Show(TypeEntretienSelectionnee.nom+" ajouté");
         }
 
         public class VM_UnEntretien_Intervention : BasePropriete

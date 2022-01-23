@@ -113,7 +113,16 @@ namespace WpfApp_Garage
 
         private void dataGridEntretiens3_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dataGridEntretiens3.SelectedIndex >= 0)
+                localTableauBord.EntretienSelectionnee2UnEntretien();
+        }
 
+        private void dataGridTypeEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dataGridTypeEntretiens.SelectedIndex >=0)
+            {
+                localTableauBord.TypeEntretienSelectionnee2UnTypeEntretien();
+            }
         }
     }
 }
