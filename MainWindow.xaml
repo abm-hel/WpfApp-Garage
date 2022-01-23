@@ -32,28 +32,28 @@
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height ="auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height ="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="textBlocEntretien" Text="ID Entretien"  Grid.Column="0" Padding="15,5"/>
-                <TextBox Name="textBoxEntretien"  Grid.Column="1" Margin="3"/>
-                <Button Name="buttonGenererFicheEntreeVehicule" Content="Fiche Entrée" Padding="15,3"  Grid.Column="2" Click="buttonGenererFicheEntreeVehicule_Click" />
-
-                <TextBlock Name="textBlocEntretien2" Text="ID Entretien"  Grid.Column="3" Padding="15,5"/>
-                <TextBox Name="textBoxEntretien2"  Grid.Column="4" Margin="3"/>
-                <Button Name="buttonGenererFacture" Content="Facture" Padding="15,3"  Grid.Column="5"  Click="buttonGenererFacture_Click"/>
+                <TextBlock Name="textBlocEntretien" Text="ID Entretien"  Margin="5"   Grid.Column="0" Padding="15,5"/>
+                <ComboBox Name="comboBoxEntretien" IsEditable="True" IsReadOnly="True" Text="Sélectionner un entretien" Grid.Column="1" Margin="5" ItemsSource="{Binding Path=bcpEntretiens}" DisplayMemberPath="id" SelectedValuePath="id"/>
+                <Button Name="buttonGenererFicheEntreeVehicule" Content="Génerer la fiche d'entrée" Padding="15,3"  Margin="5"   Grid.Column="2" Click="buttonGenererFicheEntreeVehicule_Click" />
+                
+                <Button Name="buttonGenererFacture" Content="Génerer la facture" Padding="15,3"  Margin="5" Grid.Column="3"  Click="buttonGenererFacture_Click"/>
 
             </Grid>
-            <Grid Grid.Row="1">
+            
+            <Grid Grid.Row="0">
             <TabControl>
                 <TabItem Header="Ajouter Intervention">
                     <Grid>
