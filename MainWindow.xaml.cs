@@ -254,5 +254,17 @@ namespace WpfApp_Garage
                 MessageBox.Show("Fiche d'entrée créée !");
             }
         }
+
+        private void boutonChiffreAffaire_Click(object sender, RoutedEventArgs e)
+        {
+            View.ChiffreAffaire fenetre = new View.ChiffreAffaire();
+            fenetre.ShowDialog();
+        }
+    
+
+        private void boutonReleveSemaine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
