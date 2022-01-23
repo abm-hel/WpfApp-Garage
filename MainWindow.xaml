@@ -12,6 +12,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+       
 
         <Grid Grid.Column="0" Background="CornflowerBlue">
             <StackPanel VerticalAlignment="Center" >
@@ -24,9 +25,35 @@
                 <Button Name ="boutonEntretien" Content="Entretiens" Padding="5" Margin="5" Click="boutonEntretien_Click"/>
                 <Button Name="boutonQuitter" Content="Quitter" Padding="3" Margin="5" Click="boutonQuitter_Click"/>
             </StackPanel>
+           
         </Grid>
+        
 
         <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="textBlocEntretien" Text="ID Entretien"  Grid.Column="0" Padding="15,5"/>
+                <TextBox Name="textBoxEntretien"  Grid.Column="1" Margin="3"/>
+                <Button Name="buttonGenererFicheEntreeVehicule" Content="Fiche Entrée" Padding="15,3"  Grid.Column="2" Click="buttonGenererFicheEntreeVehicule_Click" />
+
+                <TextBlock Name="textBlocEntretien2" Text="ID Entretien"  Grid.Column="3" Padding="15,5"/>
+                <TextBox Name="textBoxEntretien2"  Grid.Column="4" Margin="3"/>
+                <Button Name="buttonGenererFacture" Content="Facture" Padding="15,3"  Grid.Column="5"  Click="buttonGenererFacture_Click"/>
+
+            </Grid>
+            <Grid Grid.Row="1">
             <TabControl>
                 <TabItem Header="Ajouter Intervention">
                     <Grid>
@@ -260,8 +287,8 @@
 
                     </Grid>
                 </TabItem>
-
             </TabControl>
+           </Grid> 
         </Grid>
 
     </Grid>

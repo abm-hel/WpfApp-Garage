@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Projet_Garage.Classes;
+using Projet_Garage.Gestion;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +27,17 @@ namespace WpfApp_Garage
     {
 
         private ViewModel.VM_TableauBord localTableauBord;
-
+        private string chaineConnexion = ConfigurationManager.ConnectionStrings["WpfApp_Garage.Properties.Settings.chaineConnexionBD"].ConnectionString;
         public BaseCommande remplirEntretienIntervention { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            localTableauBord = new ViewModel.VM_TableauBord();
+            localTableauBord = new VM_TableauBord();
+
             DataContext = localTableauBord;
         }
 
-     
+
 
         private void boutonClients_Click(object sender, RoutedEventArgs e)
         {
@@ -119,10 +124,45 @@ namespace WpfApp_Garage
 
         private void dataGridTypeEntretiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(dataGridTypeEntretiens.SelectedIndex >=0)
+            if (dataGridTypeEntretiens.SelectedIndex >= 0)
             {
                 localTableauBord.TypeEntretienSelectionnee2UnTypeEntretien();
             }
+        }
+
+        private void buttonGenererFacture_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonGenererFicheEntreeVehicule_Click(object sender, RoutedEventArgs e)
+        {
+            List<C_Entretien_Intervention> interventions = new G_Entretien_Intervention(chaineConnexion).Lire("id");
+            FlowDocument fdFicheEntree = new FlowDocument();
+            Paragraph p = new Paragraph();
+            p.Inlines.Add(new Bold(new Run("Fiche d'entrée")));
+            p.Inlines.Add(new LineBreak());
+            p.Inlines.Add(new LineBreak());
+
+            p.Inlines.Add(new Bold(new Run("Interventions")));
+            foreach (C_Entretien_Intervention intervention in interventions)
+            {
+                if (intervention.entretienId == Convert.ToInt32(textBoxEntretien.Text))
+                {
+                    C_Intervention i = new G_Intervention(chaineConnexion).Lire_ID(Convert.ToInt32(intervention.interventionId));
+                    //C_Intervention in = new G_Intervention(chaineConnexion).Lire_ID(intervention.interventionId);
+                    p.Inlines.Add(new LineBreak());
+                    p.Inlines.Add(i.description);
+                }
+            }
+
+            fdFicheEntree.Blocks.Add(p);
+           /* RichTextBoxFiche.Document = fdFicheEntree;
+            FileStream fs = new FileStream(@"FicheEntree"+textBlocEntretien.Text+".doc", FileMode.Create);
+            TextRange tr = new TextRange(RichTextBoxFiche.Document.ContentStart, RichTextBoxFiche.Document.ContentEnd);
+            tr.Save(fs, System.Windows.DataFormats.Rtf);
+            MessageBox.Show("Fichier créé !");*/
+
         }
     }
 }
