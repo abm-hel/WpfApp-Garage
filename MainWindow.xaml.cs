@@ -31,6 +31,7 @@ namespace WpfApp_Garage
        // public BaseCommande remplirEntretienIntervention { get; set; }
         public RichTextBox richTextBoxFiche= new RichTextBox();
         public RichTextBox richTextBoxFacture = new RichTextBox();
+        public RichTextBox richTextBoxReleve = new RichTextBox();
         public MainWindow()
         {
             InitializeComponent();
@@ -264,7 +265,34 @@ namespace WpfApp_Garage
 
         private void boutonReleveSemaine_Click(object sender, RoutedEventArgs e)
         {
+            List<C_Entretien> entretiens = new G_Entretien(chaineConnexion).Lire("id");
+            FlowDocument fdReleve = new FlowDocument();
 
+            DateTime date = DateTime.Now.AddDays(-7);
+            Paragraph p = new Paragraph();
+            p.Inlines.Add(new Bold(new Run("Relevé de la seamine "+date.ToString("dd/MM/yyyy"))));
+            p.Inlines.Add(new LineBreak());
+            p.Inlines.Add(new LineBreak());
+
+            foreach (C_Entretien en in entretiens)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    if (Convert.ToDateTime(en.datePassage).Date == date.AddDays(i).Date)
+                    {
+                        C_Vehicule v = new G_Vehicule(chaineConnexion).Lire_ID(Convert.ToInt32(en.vehiculeId));
+                        p.Inlines.Add("Le véhicule " + v.immatriculation + " est passé le "+ Convert.ToDateTime(en.datePassage).ToString("dd/MM/yyyy"));
+                        p.Inlines.Add(new LineBreak());
+                    }
+                }
+            }
+
+            fdReleve.Blocks.Add(p);
+            richTextBoxReleve.Document = fdReleve;
+            FileStream fs = new FileStream(@"Releve"+ date.Day+"-"+date.Month+"-"+date.Year+".rtf", FileMode.Create);
+            TextRange tr = new TextRange(richTextBoxReleve.Document.ContentStart, richTextBoxReleve.Document.ContentEnd);
+            tr.Save(fs, System.Windows.DataFormats.Rtf);
+            MessageBox.Show("Relevé de la seamine écoulée créée !");
         }
     }
 }

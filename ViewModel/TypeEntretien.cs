@@ -295,6 +295,7 @@ namespace WpfApp_Garage.ViewModel
                 unTypeEntretien.id = Tmp.id;
                 unTypeEntretien.nom = Tmp.nom;
                 unTypeEntretien.kilometrage = Tmp.kilometrage;
+                nAjout = bcpTypeEntretiens.IndexOf(typeEntretienSelectionnee);
                 ActiverUneFiche = true;
             }
         }
@@ -432,6 +433,7 @@ namespace WpfApp_Garage.ViewModel
         {
             unTypeEntretien_piece = new VM_UnTypeEntretien_piece();
             nAjout = -1;
+            nAjout = bcpTypeEntretiens_pieces.IndexOf(typeEntretienSelectionnee_piece);
             ActiverUneFiche3 = true;
         }
 
