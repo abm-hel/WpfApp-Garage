@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp_Garage.ViewModel;
+using System.Net.Mail;
 
 namespace WpfApp_Garage
 {
@@ -193,7 +194,7 @@ namespace WpfApp_Garage
 
                 fdFacture.Blocks.Add(p);
                 richTextBoxFacture.Document = fdFacture;
-                FileStream fs = new FileStream(@"Facture" + entretien.id + ".rtf", FileMode.Create);
+                FileStream fs = new FileStream(@"C:\Users\adilb\Desktop\projectWPF\WpfApp-Garage\Facture" + entretien.id + ".rtf", FileMode.Create);
                 TextRange tr = new TextRange(richTextBoxFacture.Document.ContentStart, richTextBoxFacture.Document.ContentEnd);
                 tr.Save(fs, System.Windows.DataFormats.Rtf);
                 MessageBox.Show("Facture créée !");
@@ -249,7 +250,7 @@ namespace WpfApp_Garage
 
                 fdFicheEntree.Blocks.Add(p);
                 richTextBoxFiche.Document = fdFicheEntree;
-                FileStream fs = new FileStream(@"Fiche" + entretien.id + ".rtf", FileMode.Create);
+                FileStream fs = new FileStream(@"C:\Users\adilb\Desktop\projectWPF\WpfApp-Garage\Fiche" + entretien.id + ".rtf", FileMode.Create);
                 TextRange tr = new TextRange(richTextBoxFiche.Document.ContentStart, richTextBoxFiche.Document.ContentEnd);
                 tr.Save(fs, System.Windows.DataFormats.Rtf);
                 MessageBox.Show("Fiche d'entrée créée !");
@@ -289,7 +290,7 @@ namespace WpfApp_Garage
 
             fdReleve.Blocks.Add(p);
             richTextBoxReleve.Document = fdReleve;
-            FileStream fs = new FileStream(@"Releve"+ date.Day+"-"+date.Month+"-"+date.Year+".rtf", FileMode.Create);
+            FileStream fs = new FileStream(@"C:\Users\adilb\Desktop\projectWPF\WpfApp-Garage\Releve" + date.Day+"-"+date.Month+"-"+date.Year+".rtf", FileMode.Create);
             TextRange tr = new TextRange(richTextBoxReleve.Document.ContentStart, richTextBoxReleve.Document.ContentEnd);
             tr.Save(fs, System.Windows.DataFormats.Rtf);
             MessageBox.Show("Relevé de la seamine écoulée créée !");
@@ -300,5 +301,44 @@ namespace WpfApp_Garage
             View.documentRelatifHTML fenetre = new View.documentRelatifHTML();
             fenetre.ShowDialog();
         }
+        //smtp.gmail.com
+
+        private void boutonRappelMail_Click(object sender, RoutedEventArgs e)
+        {
+            List<C_Vehicule> listeVehicules = new G_Vehicule(chaineConnexion).Lire("id");
+            
+            foreach(C_Vehicule vehicule in listeVehicules)
+            {
+                C_Client client = new G_Client(chaineConnexion).Lire_ID(Convert.ToInt32(vehicule.clientId));
+                C_Modele modele = new G_Modele(chaineConnexion).Lire_ID(Convert.ToInt32(vehicule.modeleId));
+
+                SmtpClient mailServer = new SmtpClient("smtp.office365.com", 587);
+                mailServer.EnableSsl = true;
+                mailServer.Credentials = new System.Net.NetworkCredential("adil.benmoussa@student.hel.be", "ADD42279546add");
+
+                string from = "adil.benmoussa@student.hel.be";
+
+                MailMessage message = new MailMessage(from, client.adresseEmail);
+
+                if(Convert.ToInt32(vehicule.kilometrage)> 100000)
+                {
+                    message.Subject = "Rappel : Grand entretien à faire";
+                    message.Body = "N'oubliez pas de passer au garage pour le grand entretien de votre : \n\n " + modele.modele + "\n immatriculé : " + vehicule.immatriculation+"\n\nABM Garage";
+                    //message.Attachments.Add(new Attachment(@"C:\Users\adilb\Desktop\projectWPF\WpfApp-Garage\DocumentEntretiens.html"));
+                    mailServer.Send(message);
+                }
+
+                else
+                {
+                    message.Subject = "Rappel : Petit entretien à faire";
+                    message.Body = "N'oubliez pas de passer au garage pour le petit entretien de votre : \n\n " + modele.modele + "\n immatriculé : " + vehicule.immatriculation + "\n\nABM Garage";
+                    //message.Attachments.Add(new Attachment(@"C:\Users\adilb\Desktop\projectWPF\WpfApp-Garage\DocumentEntretiens.html"));
+                    mailServer.Send(message);
+                }
+            }
+            MessageBox.Show("Rappel(s) envoyé(s) par Email", "Envoyé", MessageBoxButton.OK);
+        }
+
+        }
     }
-}
+
