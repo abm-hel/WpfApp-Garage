@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -94,6 +95,7 @@
     <Compile Include="ViewModel\Base.cs" />
     <Compile Include="ViewModel\ChiffreAffaire.cs" />
     <Compile Include="ViewModel\Client.cs" />
+    <Compile Include="ViewModel\DocumentRelatifHTML.cs" />
     <Compile Include="ViewModel\Entretien.cs" />
     <Compile Include="ViewModel\Intervention.cs" />
     <Compile Include="ViewModel\Modele.cs" />
@@ -106,6 +108,9 @@
     </Compile>
     <Compile Include="View\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\documentRelatifHTML.xaml.cs">
+      <DependentUpon>documentRelatifHTML.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Entretiens.xaml.cs">
       <DependentUpon>Entretiens.xaml</DependentUpon>
@@ -142,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\documentRelatifHTML.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

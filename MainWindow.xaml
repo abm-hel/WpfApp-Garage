@@ -25,6 +25,7 @@
                 <Button Name ="boutonEntretien" Content="Entretiens" Padding="5" Margin="5" Click="boutonEntretien_Click"/>
                 <Button Name ="boutonReleveSemaine" Content="Relevé" Padding="5" Margin="5" Click="boutonReleveSemaine_Click"/>
                 <Button Name ="boutonChiffreAffaire" Content="Chiffre d'affaires" Padding="5" Margin="5" Click="boutonChiffreAffaire_Click"/>
+                <Button Name ="boutonDocumentHTML" Content="Document HTML" Padding="5" Margin="5" Click="boutonDocumentHTML_Click"/>
                 <Button Name="boutonQuitter" Content="Quitter" Padding="3" Margin="5" Click="boutonQuitter_Click"/>
             </StackPanel>
            

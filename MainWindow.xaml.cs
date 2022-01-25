@@ -294,5 +294,11 @@ namespace WpfApp_Garage
             tr.Save(fs, System.Windows.DataFormats.Rtf);
             MessageBox.Show("Relevé de la seamine écoulée créée !");
         }
+
+        private void boutonDocumentHTML_Click(object sender, RoutedEventArgs e)
+        {
+            View.documentRelatifHTML fenetre = new View.documentRelatifHTML();
+            fenetre.ShowDialog();
+        }
     }
 }
